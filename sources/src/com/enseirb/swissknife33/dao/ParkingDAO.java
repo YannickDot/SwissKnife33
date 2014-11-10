@@ -1,4 +1,4 @@
-package DAO;
+package com.enseirb.swissknife33.dao;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,8 +6,9 @@ import java.net.MalformedURLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.enseirb.swissknife33.dao.model.ParkingDTO;
+
 import JSONUtils.*;
-import DTO.*;
 
 public class ParkingDAO {
 	

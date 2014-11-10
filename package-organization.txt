@@ -3,13 +3,13 @@ com/enseirb/swissknife33/
 				ex: XXXActivity
 			business/
 				ex: ParkingBusiness
-				models/
+				model/
 					ex: Parking
 			converter/
 				ex: ParkingConverter
 			dao/
 				ex: ParkingDAO
-				models/
+				model/
 					ex: ParkingDTO
 			parser/
 				ex: ParkingParser

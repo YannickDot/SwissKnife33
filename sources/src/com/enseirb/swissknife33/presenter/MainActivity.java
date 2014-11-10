@@ -1,4 +1,7 @@
-package com.enseirb.swissknife33;
+package com.enseirb.swissknife33.presenter;
+
+import com.enseirb.swissknife33.R;
+import com.enseirb.swissknife33.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package DTO;
+package com.enseirb.swissknife33.dao.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
