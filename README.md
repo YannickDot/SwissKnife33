@@ -19,7 +19,17 @@ Les designs de l'application sont disponibles ici :
 
 ## Répartition des taches  
 
-- Interface (Menu latéral, Checkboxes, Navigation Drawer)
-- Récupération des données (DAO)
-- Configuration et manipulation de Google Map (Afficher des markers, Zoom, position initiale)
+- Interface (Menu latéral, Checkboxes, Navigation Drawer) : 
+- Récupération des données (DAO) : 
+- Configuration et manipulation de Google Map (Afficher des markers, Zoom, position initiale) : 
+
+
+## Architecture 
+
+- Présenter : ParkingBusiness.getParkings() => Collection de Parking à afficher
+- Business : ParkingConverter.getParkings() => Collection de Parking 
+- Converter : ParkingDAO.getParkings() => Collection de ParkingDTO
+- DAO : Appel au webservice -> JSON String -> ParkingParser -> Collection de ParkingDTO
+
+
 
