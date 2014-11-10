@@ -1,0 +1,14 @@
+com/enseirb/swissknife33/
+			presenter/
+				ex: XXXActivity
+			business/
+				ex: ParkingBusiness
+				models/
+					ex: Parking
+			converter/
+			dao/
+				ex: ParkingDAO
+				models/
+					ex: ParkingDTO
+			parser/
+				ex: ParkingParser
