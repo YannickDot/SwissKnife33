@@ -19,9 +19,14 @@ Les designs de l'application sont disponibles ici :
 
 ## Répartition des taches  
 
-- Interface (Menu latéral, Checkboxes, Navigation Drawer) : 
-- Récupération des données (DAO) : 
-- Configuration et manipulation de Google Map (Afficher des markers, Zoom, position initiale) : 
+- Couche Présenter : Interface (Checkboxes, Navigation Drawer) [Idyr, Yannick]
+- Couche DAO : Récupération des données en JSON [Yannick]
+- Préparer l'architecture [Yvon]
+- Configuration et manipulation de Google Map (Afficher des markers, Zoom, position initiale) [Souhaib, Sarah]
+- Parsers pour chaque type de data [Sarah]
+- Persistence des données (fichier ou SharedPrefences) ... 
+
+Markers : Créer un marker - Utiliser l'architecture en couche similaire pour stocker les marqueurs dans un fichier ou un SharedPrefences 
 
 
 ## Architecture 
