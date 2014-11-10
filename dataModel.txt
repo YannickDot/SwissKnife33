@@ -1,0 +1,58 @@
+Défibrilateur : defibrillator
+
+{
+      "cle": "13031",
+      "adresse": "Quai Richelieu",
+      "commune": "BORDEAUX",
+      "code_postal": "33000",
+      "nom": "Maison Eco Citoyenne",
+      "telephone": "05 24 57 65 20",
+      "typologie": "Semi-automatique",
+      "installe": "OUI",
+      "information": "face au cours Alsace et Lorraine",
+      "x_long": "-0,566787408526668",
+      "y_lat": "44,8384602676343",
+  }
+
+
+
+Toilettes publiques : Toilets
+
+{
+      "cle": "149",
+      "adresse": "Rue Louis Gendreau",
+      "nom": "Louis Gendreau (Grand parc)",
+      "quartier": "Grand Parc - Paul Doumer",
+      "typologie": "Sanitaire automatique",
+      "x_long": "-0.58266727031238",
+      "y_lat": "44.8601891620937",
+  }
+
+
+Nichoir : Nest
+
+
+{
+      "cle": "41074",
+      "nature_abris": "Nichoir",
+      "detail_espece_visee": "Troglodyte mignon",
+      "nom": "61 Parc Bordelais",
+      "x_long": "-0.600243172580741",
+      "y_lat": "44.8516538932736",
+  }
+
+
+Parkings 
+
+
+
+{
+      "cle": "5152",
+      "domanialite": "Ville",
+      "nature": "Surface gratuit",
+      "nom": "ex salle de la rotonde/hortense",
+      "nombre_de_places": "20",
+      "x_long": "-0.556043265118365",
+      "y_lat": "44.8455083520049",
+  }
+
