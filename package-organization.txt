@@ -6,6 +6,7 @@ com/enseirb/swissknife33/
 				models/
 					ex: Parking
 			converter/
+				ex: ParkingConverter
 			dao/
 				ex: ParkingDAO
 				models/
