@@ -38,7 +38,6 @@ public class JsonParser {
 	    } finally {
 	      is.close();
 	    }
-		
 	}
-	
+		
 }

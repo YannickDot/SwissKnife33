@@ -1,17 +1,15 @@
-package com.enseirb.swissknife33.dao.model;
+package com.enseirb.swissknife33.business;
 
-
-
-public class ParkingDTO {
-	private String cle;
+public class Parking {
+	private int cle;
     private String domanialite;
     private String nature;
     private String nom;
-    private String nombre_de_places;
-    private String x_long;
-    private String y_lat;
+    private int nombre_de_places;
+    private float x_long;
+    private float y_lat;
     
-	public void setCle(String cle) {
+	public void setCle(int cle) {
 		this.cle = cle;
 	}
 
@@ -27,20 +25,18 @@ public class ParkingDTO {
 		this.nom = nom;
 	}
 
-	public void setNombre_de_places(String nombre_de_places) {
+	public void setNombre_de_places(int nombre_de_places) {
 		this.nombre_de_places = nombre_de_places;
 	}
 
-	public void setX_long(String x_long) {
+	public void setX_long(float x_long) {
 		this.x_long = x_long;
 	}
 
-	public void setY_lat(String y_lat) {
+	public void setY_lat(float y_lat) {
 		this.y_lat = y_lat;
 	}
 
-	public ParkingDTO(){
-		
-		
-	}
+
+    
 }
