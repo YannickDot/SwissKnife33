@@ -1,6 +1,6 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class NestDTO {
+public class NestDTO extends AbstractDTO {
 	private String cle;
 	private String nature_abris;
 	private String detail_espece_visee;

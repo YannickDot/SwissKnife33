@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 
-public class ParkingParser {
+public class ParkingParser extends AbstractParser<ParkingDTO> {
 	public List<ParkingDTO> parse(JSONArray parkingsArray) throws JSONException{
 		List<ParkingDTO> list = new ArrayList<ParkingDTO>();
 		for (int i =0; i<parkingsArray.length();i++){

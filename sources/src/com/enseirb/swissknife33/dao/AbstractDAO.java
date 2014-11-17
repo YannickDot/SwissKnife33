@@ -8,28 +8,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import JSONUtils.JsonParser;
+
+import com.enseirb.swissknife33.dao.model.AbstractDTO;
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
+import com.enseirb.swissknife33.parser.AbstractParser;
 import com.enseirb.swissknife33.parser.ParkingParser;
 
-import JSONUtils.*;
-
-public class ParkingDAO extends AbstractDAO<ParkingDTO> {
+public abstract class AbstractDAO <T>{
+protected String URL = "";
 	
-	public ParkingDAO(String url) {
-		super(url);
-		this.URL = url+"sigparkpub/?format=json";
+
+	public AbstractDAO(String url){
+		this.URL = url;
 	}
-
-
-	//private String URL_PARKING = "http://odata.bordeaux.fr/v1/databordeaux/sigparkpub/?format=json";
 	
-
-	public List<ParkingDTO> fetch() throws JSONException{
+	public List<T> fetch() throws JSONException{
 		JsonParser JSON = new JsonParser();
 		JSONObject jsonResult = new JSONObject();
 		
 		try {
-			jsonResult = JSON.readJsonFromUrl(this.URL);
+			jsonResult = JSON.readJsonFromUrl(URL);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,10 +39,16 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JSONArray parkingsArray = jsonResult.getJSONArray("d");
-		ParkingParser parser = new ParkingParser();
-		List<ParkingDTO> list = parser.parse(parkingsArray);
+		JSONArray array = jsonResult.getJSONArray("d");
+		AbstractParser<T> parser = getParser();//new AbstractParser<T>();
+		List<T> list = parser.parse(array);
 		
 		return list;
+	
+	}
+
+	private AbstractParser<T> getParser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

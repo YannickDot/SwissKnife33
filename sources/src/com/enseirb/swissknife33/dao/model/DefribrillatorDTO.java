@@ -1,6 +1,6 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class DefribrillatorDTO {
+public class DefribrillatorDTO extends AbstractDTO{
 	private String cle;
 	private String adresse;
 	private String commune;

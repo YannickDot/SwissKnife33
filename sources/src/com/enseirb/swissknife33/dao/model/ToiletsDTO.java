@@ -1,6 +1,6 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class ToiletsDTO {
+public class ToiletsDTO extends AbstractDTO{
 	private String cle;
 	private String adresse;
 	private String nom;

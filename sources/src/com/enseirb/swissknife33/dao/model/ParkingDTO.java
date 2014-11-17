@@ -2,7 +2,7 @@ package com.enseirb.swissknife33.dao.model;
 
 
 
-public class ParkingDTO {
+public class ParkingDTO extends AbstractDTO{
 	private String cle;
     private String domanialite;
     private String nature;
