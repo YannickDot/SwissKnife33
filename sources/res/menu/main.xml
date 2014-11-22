@@ -2,6 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.enseirb.swissknife33.MainActivity" >
 
+     <item
+        android:id="@+id/action_example"
+        android:showAsAction="withText|ifRoom"
+        android:title="@string/action_example"/>
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
