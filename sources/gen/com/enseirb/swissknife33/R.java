@@ -419,6 +419,7 @@ containing a value of this type.
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
+        public static final int defibrillatorsBox=0x7f07001b;
         public static final int drawer_layout=0x7f070014;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
@@ -428,8 +429,10 @@ containing a value of this type.
         public static final int match_parent=0x7f07000c;
         public static final int monochrome=0x7f070013;
         public static final int navigation_drawer=0x7f070016;
+        public static final int nestsBox=0x7f07001a;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
+        public static final int parkingsBox=0x7f070019;
         public static final int production=0x7f070007;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
@@ -437,6 +440,7 @@ containing a value of this type.
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
+        public static final int toiletsBox=0x7f070018;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -559,6 +563,7 @@ containing a value of this type.
         public static final int decline=0x7f050003;
         public static final int navigation_drawer_close=0x7f050029;
         public static final int navigation_drawer_open=0x7f050028;
+        public static final int shared_preferences_personal_items_data=0x7f05002b;
         public static final int store_picture_message=0x7f050001;
         public static final int store_picture_title=0x7f050000;
         public static final int title_defibrillators=0x7f050027;

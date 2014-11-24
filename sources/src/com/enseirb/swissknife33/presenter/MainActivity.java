@@ -3,21 +3,24 @@ package com.enseirb.swissknife33.presenter;
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.presenter.NavigationDrawerFragment;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class MainActivity extends Activity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
-
+	
+	private CheckBox toiletsBox;
+	private CheckBox parkingsBox;
+	private CheckBox nestsBox;
+	private CheckBox defibrillatorsBox;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +31,13 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		toiletsBox = (CheckBox) findViewById(R.id.toiletsBox);
+		parkingsBox = (CheckBox) findViewById(R.id.parkingsBox);
+		nestsBox = (CheckBox) findViewById(R.id.nestsBox);
+		defibrillatorsBox = (CheckBox) findViewById(R.id.defibrillatorsBox);
+		
+		checkBoxJob();
 	}
 
 	@Override
@@ -39,37 +49,72 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		.replace(R.id.map,
 				PlaceholderFragment.newInstance(position + 1)).commit();
 	}
-
-	public void restoreActionBar() {
-		ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setDisplayShowTitleEnabled(true);
+	
+	public void checkBoxJob(){
+		toiletssBoxJob();
+		parkingsBoxJob();
+		nestsBoxJob();
+		defibrillatorsBoxJob();
 	}
 
-	public static class PlaceholderFragment extends Fragment {
+	private void nestsBoxJob() {
+		nestsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(nestsBox.isChecked()){
+					nestsBox.setText("nests checked");
+				}
+				else{
+					nestsBox.setText("nests unchecked");
+				}
+			}
+		});
+	}
 
-		private static final String ARG_SECTION_NUMBER = "section_number";
+	private void defibrillatorsBoxJob() {
+		defibrillatorsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(defibrillatorsBox.isChecked()){
+					defibrillatorsBox.setText("defibrillators checked");
+				}
+				else{
+					defibrillatorsBox.setText(" defibrillators unchecked");
+				}
+			}
+		});		
+	}
 
-	
-		public static PlaceholderFragment newInstance(int sectionNumber) {
-			PlaceholderFragment fragment = new PlaceholderFragment();
-			Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-			fragment.setArguments(args);
-			return fragment;
-		}
+	private void parkingsBoxJob() {
+		parkingsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(parkingsBox.isChecked()){
+					parkingsBox.setText("parkings checked");
+				}
+				else{
+					parkingsBox.setText("parkings unchecked");
+				}				
+			}
+		});
+	}
 
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-
+	private void toiletssBoxJob() {
+		toiletsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(toiletsBox.isChecked()){
+					toiletsBox.setText("toilets checked");
+				}
+				else{
+					toiletsBox.setText("toilets unchecked");
+				}
+			}
+		});
 	}
 
 }
