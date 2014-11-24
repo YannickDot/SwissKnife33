@@ -1,9 +1,33 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#cccc"
-    android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="0dp"
-    tools:context="com.enseirb.swissknife33.presenter.NavigationDrawerFragment" />
+    android:orientation="vertical"
+    tools:context="com.enseirb.swissknife33.presenter.NavigationDrawerFragment" >
+
+    <CheckBox
+        android:id="@+id/toiletsBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_toilets" />
+
+    <CheckBox
+        android:id="@+id/parkingsBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_parkings" />
+    
+    <CheckBox
+        android:id="@+id/nestsBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_nests" />
+    
+    <CheckBox
+        android:id="@+id/defibrillatorsBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_defibrillators" />
+
+</LinearLayout>
