@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 import com.enseirb.swissknife33.parser.ParkingParser;
 
@@ -15,29 +17,23 @@ import JSONUtils.*;
 
 public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 	
-	public ParkingDAO(String url) {
-		super(url);
-		this.URL = url+"sigparkpub/?format=json";
+	public ParkingDAO(String url, ParkingParser parser) {
+		this.URL = url;
+		this.parser = parser;
 	}
-
-
-	//private String URL_PARKING = "http://odata.bordeaux.fr/v1/databordeaux/sigparkpub/?format=json";
-	
 
 	public List<ParkingDTO> fetch() throws JSONException{
 		JsonParser JSON = new JsonParser();
 		JSONObject jsonResult = new JSONObject();
 		
 		try {
-			jsonResult = JSON.readJsonFromUrl(this.URL);
+			Log.d("DEBUG", "URL : " + URL);
+			jsonResult = JSON.readJsonFromUrl(URL);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JSONArray parkingsArray = jsonResult.getJSONArray("d");

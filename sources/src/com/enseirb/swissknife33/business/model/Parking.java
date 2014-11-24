@@ -1,4 +1,4 @@
-package com.enseirb.swissknife33.business;
+package com.enseirb.swissknife33.business.model;
 
 public class Parking {
 	private int cle;
