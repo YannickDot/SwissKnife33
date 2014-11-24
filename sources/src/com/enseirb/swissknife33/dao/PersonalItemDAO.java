@@ -12,7 +12,6 @@ import android.util.Log;
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
-import com.google.android.gms.internal.js;
 
 public class PersonalItemDAO {
 	

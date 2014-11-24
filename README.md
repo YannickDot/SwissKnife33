@@ -24,7 +24,7 @@ Les designs de l'application sont disponibles ici :
 - Préparer l'architecture [Yvon]
 - Configuration et manipulation de Google Map (Afficher des markers, Zoom, position initiale) [Souhaib, Sarah]
 - Parsers pour chaque type de data [Sarah]
-- Persistence des données (fichier ou SharedPrefences) ... 
+- Persistence des données (SharedPrefences) [Yannick]
 
 Markers : Créer un marker - Utiliser l'architecture en couche similaire pour stocker les marqueurs dans un fichier ou un SharedPrefences 
 
