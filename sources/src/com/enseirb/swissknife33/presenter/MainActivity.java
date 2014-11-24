@@ -1,15 +1,11 @@
 package com.enseirb.swissknife33.presenter;
 
-import java.net.URL;
 import java.util.List;
-
-import org.json.JSONException;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -18,8 +14,6 @@ import android.view.ViewGroup;
 
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.business.ParkingBusiness;
-import com.enseirb.swissknife33.dao.DAOFactory;
-import com.enseirb.swissknife33.dao.ParkingDAO;
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 
 public class MainActivity extends Activity implements
