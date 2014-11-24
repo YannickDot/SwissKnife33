@@ -559,6 +559,7 @@ containing a value of this type.
         public static final int decline=0x7f050003;
         public static final int navigation_drawer_close=0x7f050029;
         public static final int navigation_drawer_open=0x7f050028;
+        public static final int shared_preferences_personal_items_data=0x7f05002b;
         public static final int store_picture_message=0x7f050001;
         public static final int store_picture_title=0x7f050000;
         public static final int title_defibrillators=0x7f050027;
