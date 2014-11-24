@@ -1,3 +1,5 @@
+/sources/AndroidManifest.xml
+
 /sources/bin/classes*
 /sources/bin/res
 /sources/bin/dexedLibs/
