@@ -2,11 +2,6 @@ package com.enseirb.swissknife33.presenter;
 
 import java.util.List;
 
-import com.enseirb.swissknife33.R;
-import com.enseirb.swissknife33.business.ParkingBusiness;
-import com.enseirb.swissknife33.dao.model.ParkingDTO;
-import com.enseirb.swissknife33.presenter.NavigationDrawerFragment;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -14,6 +9,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import com.enseirb.swissknife33.R;
+import com.enseirb.swissknife33.business.BusinessFactory;
+import com.enseirb.swissknife33.business.model.Parking;
+import com.enseirb.swissknife33.presenter.ui.InProgressMethodWrapper;
+import com.enseirb.swissknife33.presenter.ui.OnSuccessMethodWrapper;
 
 public class MainActivity extends Activity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -25,7 +26,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 	private CheckBox nestsBox;
 	private CheckBox defibrillatorsBox;
 
-	private ParkingBusiness parkingBusiness = null;
+	private BusinessFactory businessFactory = new BusinessFactory();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +46,33 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 		checkBoxJob();
 
-		parkingBusiness = new ParkingBusiness(this);
-		parkingBusiness.createAsyncTaskParkingRequest().execute();
+		// Getting Parking data and processing it
+		businessFactory.getParkingBusiness(new InProgressMethodWrapper() {
+			
+			@Override
+			public void callback() {
+				displayParkingsWaitMessage();
+			}
+		},
+		new OnSuccessMethodWrapper() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public void callback(List<?> data) {
+				updateParkings((List<Parking>) data);
+			}
+		})
+		.createAsyncTaskParkingRequest().execute();
 	}
-
-	public void updateParkings(List<ParkingDTO> parkings) {
-		System.out.println("parkings recuperes ! (" + parkings.size() + ")");
-		for (ParkingDTO parkingDTO : parkings) {
-			System.out.println(parkingDTO.toString());
+	
+	private void displayParkingsWaitMessage() {
+		System.out.println("Récupération des parkings en cours.");
+	}
+	
+	private void updateParkings(List<Parking> parkings) {
+		System.out.println(parkings.size() + "Parkings recuperes !");
+		for (Parking p : parkings) {
+			System.out.println(p.toString());
 		}
 	}
 
@@ -63,7 +83,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager
 		.beginTransaction().commit();
-		// TODO Les deux lignes d'en dessous sont à remettre. Ne compilait sinon.
+		// TODO Les deux lignes d'en dessous sont à remettre. Ne compilait plus sinon.
 		// J'ai peut-être fait une erreur de merge !
 		//		.replace(R.id.map,
 		//				PlaceholderFragment.newInstance(position + 1)).commit();

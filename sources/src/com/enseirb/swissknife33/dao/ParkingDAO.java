@@ -8,12 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import JSONUtils.JsonParser;
 
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 import com.enseirb.swissknife33.parser.ParkingParser;
-
-import JSONUtils.*;
 
 public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 	
@@ -22,12 +20,12 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		this.parser = parser;
 	}
 
-	public List<ParkingDTO> fetch() throws JSONException{
+	@SuppressWarnings("unchecked")
+	public List<ParkingDTO> fetch() throws JSONException {
 		JsonParser JSON = new JsonParser();
 		JSONObject jsonResult = new JSONObject();
 		
 		try {
-			Log.d("DEBUG", "URL : " + URL);
 			jsonResult = JSON.readJsonFromUrl(URL);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -36,9 +34,10 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
 		JSONArray parkingsArray = jsonResult.getJSONArray("d");
-		ParkingParser parser = new ParkingParser();
-		List<ParkingDTO> list = parser.parse(parkingsArray);
+//		ParkingParser parser = new ParkingParser();
+		List<ParkingDTO> list = (List<ParkingDTO>) parser.parse(parkingsArray);
 		
 		return list;
 	}

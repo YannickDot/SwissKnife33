@@ -1,42 +1,75 @@
 package com.enseirb.swissknife33.business.model;
 
 public class Parking {
-	private int cle;
-    private String domanialite;
-    private String nature;
-    private String nom;
-    private int nombre_de_places;
-    private float x_long;
-    private float y_lat;
+	
+	private int key;
+	private String domaniality;
+	private String nature;
+    private String name;
+    private int numberOfSpace;
+    private float longitude;
+    private float latitude;
     
-	public void setCle(int cle) {
-		this.cle = cle;
+	public int getKey() {
+		return key;
 	}
-
-	public void setDomanialite(String domanialite) {
-		this.domanialite = domanialite;
+	public Parking setKey(int key) {
+		this.key = key;
+		return this;
 	}
-
-	public void setNature(String nature) {
+	public String getDomaniality() {
+		return domaniality;
+	}
+	public Parking setDomaniality(String domaniality) {
+		this.domaniality = domaniality;
+		return this;
+	}
+	public String getNature() {
+		return nature;
+	}
+	public Parking setNature(String nature) {
 		this.nature = nature;
+		return this;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
+	public String getName() {
+		return name;
 	}
-
-	public void setNombre_de_places(int nombre_de_places) {
-		this.nombre_de_places = nombre_de_places;
+	public Parking setName(String name) {
+		this.name = name;
+		return this;
 	}
-
-	public void setX_long(float x_long) {
-		this.x_long = x_long;
+	public int getNumberOfSpace() {
+		return numberOfSpace;
 	}
-
-	public void setY_lat(float y_lat) {
-		this.y_lat = y_lat;
+	public Parking setNumberOfSpace(int numberOfSpace) {
+		this.numberOfSpace = numberOfSpace;
+		return this;
 	}
-
-
-    
+	public float getLongitude() {
+		return longitude;
+	}
+	public Parking setLongitude(float longitude) {
+		this.longitude = longitude;
+		return this;
+	}
+	public float getLatitude() {
+		return latitude;
+	}
+	public Parking setLatitude(float latitude) {
+		this.latitude = latitude;
+		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return String
+				.format("Parking [key=%s, domaniality=%s, nature=%s, name=%s, numberOfSpace=%s, longitude=%s, latitude=%s]",
+						key,
+						domaniality,
+						nature,
+						name,
+						numberOfSpace,
+						longitude,
+						latitude);
+	}  
 }

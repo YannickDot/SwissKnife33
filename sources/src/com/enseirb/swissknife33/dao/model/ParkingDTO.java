@@ -2,45 +2,63 @@ package com.enseirb.swissknife33.dao.model;
 
 
 
-public class ParkingDTO extends AbstractDTO{
-	private String cle;
-    private String domanialite;
-    private String nature;
-    private String nom;
-    private String nombre_de_places;
-    private String x_long;
-    private String y_lat;
+public class ParkingDTO extends AbstractDTO {
+	
+	private String key;
+	private String domaniality;
+	private String nature;
+    private String name;
+    private String numberOfSpace;
+    private String longitude;
+    private String latitude;
     
-	public void setCle(String cle) {
-		this.cle = cle;
+	public String getKey() {
+		return key;
 	}
-
-	public void setDomanialite(String domanialite) {
-		this.domanialite = domanialite;
+	public ParkingDTO setKey(String key) {
+		this.key = key;
+		return this;
 	}
-
-	public void setNature(String nature) {
+	public String getDomaniality() {
+		return domaniality;
+	}
+	public ParkingDTO setDomaniality(String domaniality) {
+		this.domaniality = domaniality;
+		return this;
+	}
+	public String getNature() {
+		return nature;
+	}
+	public ParkingDTO setNature(String nature) {
 		this.nature = nature;
+		return this;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
+	public String getName() {
+		return name;
 	}
-
-	public void setNombre_de_places(String nombre_de_places) {
-		this.nombre_de_places = nombre_de_places;
+	public ParkingDTO setName(String name) {
+		this.name = name;
+		return this;
 	}
-
-	public void setX_long(String x_long) {
-		this.x_long = x_long;
+	public String getNumberOfSpace() {
+		return numberOfSpace;
 	}
-
-	public void setY_lat(String y_lat) {
-		this.y_lat = y_lat;
+	public ParkingDTO setNumberOfSpace(String numberOfSpace) {
+		this.numberOfSpace = numberOfSpace;
+		return this;
 	}
-
-	public ParkingDTO(){
-		
-		
+	public String getLongitude() {
+		return longitude;
+	}
+	public ParkingDTO setLongitude(String longitude) {
+		this.longitude = longitude;
+		return this;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public ParkingDTO setLatitude(String latitude) {
+		this.latitude = latitude;
+		return this;
 	}
 }

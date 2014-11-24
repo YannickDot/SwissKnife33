@@ -11,27 +11,33 @@ import com.enseirb.swissknife33.dao.model.ParkingDTO;
 
 public class ParkingParser extends AbstractParser<ParkingDTO> {
 	
-	public List<ParkingDTO> parse(JSONArray parkingsArray) throws JSONException{
+	public List<ParkingDTO> parse(JSONArray parkingsArray) throws JSONException {
+		
 		List<ParkingDTO> list = new ArrayList<ParkingDTO>();
-		for (int i =0; i<parkingsArray.length();i++){
+		
+		for (int i = 0; i < parkingsArray.length(); i++) {
+			
 			ParkingDTO p = new ParkingDTO();
 			JSONObject jsonParking = parkingsArray.getJSONObject(i);
+			
 			if (jsonParking.has("cle"))
-				p.setCle(jsonParking.getString("cle"));
+				p.setKey(jsonParking.getString("cle"));
 			if (jsonParking.has("domanialite"))
-				p.setDomanialite(jsonParking.getString("domanialite"));
+				p.setDomaniality(jsonParking.getString("domanialite"));
 			if (jsonParking.has("nature"))
 				p.setNature(jsonParking.getString("nature"));
 			if (jsonParking.has("nom"))
-				p.setNom(jsonParking.getString("nom"));
+				p.setName(jsonParking.getString("nom"));
 			if (jsonParking.has("nombre_de_places"))
-				p.setNombre_de_places(jsonParking.getString("nombre_de_places"));
+				p.setNumberOfSpace(jsonParking.getString("nombre_de_places"));
 			if (jsonParking.has("x_long"))
-				p.setX_long(jsonParking.getString("x_long"));
+				p.setLongitude(jsonParking.getString("x_long"));
 			if (jsonParking.has("y_lat"))
-				p.setY_lat(jsonParking.getString("y_lat"));
+				p.setLatitude(jsonParking.getString("y_lat"));
+			
 			list.add(p);
 		}
+		
 		return list;
 	}
 }
