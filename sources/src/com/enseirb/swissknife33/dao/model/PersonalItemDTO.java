@@ -1,7 +1,9 @@
 package com.enseirb.swissknife33.dao.model;
 
 
-public class PersonalItemDTO extends AbstractDTO{
+public class PersonalItemDTO extends AbstractDTO {
+	//TODO Switch to english
+	//TODO Getters + Fluent Setters
 	private String key;
     private String name;
     private String x_long;

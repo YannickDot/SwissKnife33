@@ -1,15 +1,12 @@
 package com.enseirb.swissknife33.business;
 
-import com.enseirb.swissknife33.presenter.ui.InProgressMethodWrapper;
-import com.enseirb.swissknife33.presenter.ui.OnSuccessMethodWrapper;
+import android.content.Context;
+
+import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 
 public class BusinessFactory {
-
-	public ParkingBusiness getParkingBusiness(
-			InProgressMethodWrapper inProgress,
-			OnSuccessMethodWrapper onSuccess) {
-		
-		ParkingBusiness parkingBusiness = new ParkingBusiness(inProgress, onSuccess);
-		return parkingBusiness;
+	
+	public ParkingBusiness getParkingBusiness(Context context, FetchParkingListener listener) {
+		return new ParkingBusiness(context, listener);
 	}
 }

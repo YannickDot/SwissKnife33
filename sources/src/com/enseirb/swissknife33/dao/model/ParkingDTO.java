@@ -1,7 +1,5 @@
 package com.enseirb.swissknife33.dao.model;
 
-
-
 public class ParkingDTO extends AbstractDTO {
 	
 	private String key;

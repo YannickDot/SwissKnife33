@@ -1,6 +1,8 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class ToiletsDTO extends AbstractDTO{
+public class ToiletsDTO extends AbstractDTO {
+	//TODO Switch to english
+	//TODO Getters + Fluent Setters
 	private String cle;
 	private String adresse;
 	private String nom;

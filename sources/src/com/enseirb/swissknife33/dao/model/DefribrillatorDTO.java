@@ -1,6 +1,8 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class DefribrillatorDTO extends AbstractDTO{
+public class DefribrillatorDTO extends AbstractDTO {
+	//TODO Switch to english
+	//TODO Getters + Fluent Setters
 	private String cle;
 	private String adresse;
 	private String commune;

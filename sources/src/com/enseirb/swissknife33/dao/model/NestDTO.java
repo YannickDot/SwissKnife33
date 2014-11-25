@@ -1,6 +1,8 @@
 package com.enseirb.swissknife33.dao.model;
 
 public class NestDTO extends AbstractDTO {
+	//TODO Switch to english
+	//TODO Getters + Fluent Setters
 	private String cle;
 	private String nature_abris;
 	private String detail_espece_visee;

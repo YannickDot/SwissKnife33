@@ -13,11 +13,14 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Parking;
-import com.enseirb.swissknife33.presenter.ui.InProgressMethodWrapper;
-import com.enseirb.swissknife33.presenter.ui.OnSuccessMethodWrapper;
+import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 
 public class MainActivity extends Activity implements
-NavigationDrawerFragment.NavigationDrawerCallbacks {
+NavigationDrawerFragment.NavigationDrawerCallbacks,
+FetchParkingListener {
+//,
+//FetchNestListener,
+// ... 
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -46,36 +49,10 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 		checkBoxJob();
 
-		// Getting Parking data and processing it
-		businessFactory.getParkingBusiness(new InProgressMethodWrapper() {
-			
-			@Override
-			public void callback() {
-				displayParkingsWaitMessage();
-			}
-		},
-		new OnSuccessMethodWrapper() {
-			
-			@SuppressWarnings("unchecked")
-			@Override
-			public void callback(List<?> data) {
-				updateParkings((List<Parking>) data);
-			}
-		})
-		.createAsyncTaskParkingRequest().execute();
+		// Getting Parking data. See bottom of the code to tell how to process it
+		businessFactory.getParkingBusiness(this, this)
+			.createFetchParkingsAsyncTask().execute();
 	}
-	
-	private void displayParkingsWaitMessage() {
-		System.out.println("Récupération des parkings en cours.");
-	}
-	
-	private void updateParkings(List<Parking> parkings) {
-		System.out.println(parkings.size() + "Parkings recuperes !");
-		for (Parking p : parkings) {
-			System.out.println(p.toString());
-		}
-	}
-
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
@@ -156,4 +133,29 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		});
 	}
 
+	@Override
+	public void onFetchParkingsSuccess(List<Parking> parkings) {
+		//TODO Display parkings data
+		updateParkings(parkings);
+	}
+
+	@Override
+	public void onFetchParkingsError() {
+		//TODO Display error
+		System.out.println("An error occured while fetching parkings.");
+	}
+	
+	@Override
+	public void onWaitForParkings() {
+		//TODO Display wait message
+		System.out.println("Fetching parkings.");
+	}
+	
+	//TODO Display parkings data
+	private void updateParkings(List<Parking> parkings) {
+		System.out.println(parkings.size() + " parkings fetched !");
+		for (Parking p : parkings) {
+			System.out.println(p.toString());
+		}
+	}
 }

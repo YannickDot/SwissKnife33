@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import JSONUtils.JsonParser;
 
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
+import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.parser.ParkingParser;
 
 public class ParkingDAO extends AbstractDAO<ParkingDTO> {
@@ -20,24 +21,22 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		this.parser = parser;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<ParkingDTO> fetch() throws JSONException {
+	public List<ParkingDTO> fetch() throws JSONException, Swissknife33Exception {
 		JsonParser JSON = new JsonParser();
 		JSONObject jsonResult = new JSONObject();
 		
 		try {
 			jsonResult = JSON.readJsonFromUrl(URL);
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			throw new Swissknife33Exception();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new Swissknife33Exception();
 		} catch (JSONException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		
 		JSONArray parkingsArray = jsonResult.getJSONArray("d");
-//		ParkingParser parser = new ParkingParser();
-		List<ParkingDTO> list = (List<ParkingDTO>) parser.parse(parkingsArray);
+		List<ParkingDTO> list = parser.parse(parkingsArray);
 		
 		return list;
 	}

@@ -12,7 +12,6 @@ import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 public class PersonalItemParser extends AbstractParser<PersonalItemDTO> {
 	
 	public List<PersonalItemDTO> parse(JSONArray personalItemArray) throws JSONException {
-		// TODO Auto-generated method stub
 		List<PersonalItemDTO> list = new ArrayList<PersonalItemDTO>();
 		for (int i =0; i < personalItemArray.length(); i++){
 			PersonalItemDTO p = new PersonalItemDTO();

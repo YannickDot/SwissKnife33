@@ -8,13 +8,14 @@ import org.json.JSONException;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.dao.DAOFactory;
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
+import com.enseirb.swissknife33.exception.Swissknife33Exception;
 
 public class ParkingConverter {
 
 	private static final int UNDEFINED = -1;
 	private DAOFactory daoFactory = new DAOFactory();
 
-	public List<Parking> fetch() {
+	public List<Parking> fetch() throws Swissknife33Exception {
 
 		List<ParkingDTO> parkingsDTO = null;
 		List<Parking> parkings = new LinkedList<Parking>();
@@ -25,7 +26,7 @@ public class ParkingConverter {
 				parkings.add(toParking(p));
 			}
 		} catch (JSONException e) {
-			e.printStackTrace();
+			throw new Swissknife33Exception();
 		}
 
 		return parkings;
