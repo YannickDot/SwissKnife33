@@ -9,8 +9,8 @@
 *.ap_
 *.dex
 *.class
-bin/
-gen/
+/sources/bin/
+/sources/gen/
 local.properties
 
 
