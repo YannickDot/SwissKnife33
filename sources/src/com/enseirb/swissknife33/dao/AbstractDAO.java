@@ -7,4 +7,5 @@ public abstract class AbstractDAO <T extends AbstractDTO> {
 	
 	public String URL = "";
 	public AbstractParser<T> parser = null;
+	public Storage storage = null;
 }

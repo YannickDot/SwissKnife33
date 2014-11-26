@@ -4,8 +4,8 @@ import android.content.Context;
 
 public class ConverterFactory {
 
-	public ParkingConverter getParkingConverter() {
-		return new ParkingConverter();
+	public ParkingConverter getParkingConverter(Context context) {
+		return new ParkingConverter(context);
 	}
 	
 	public PersonalItemConverter getPersonalItemConverter(Context context) {

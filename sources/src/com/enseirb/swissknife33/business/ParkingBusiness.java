@@ -40,7 +40,7 @@ public class ParkingBusiness {
 				// Here or not ? We can check it in the DAO.
 				// If we do it in the DAO, we need to pass the context.
 				try {
-					parkings = converterFactory.getParkingConverter().fetch();
+					parkings = converterFactory.getParkingConverter(context).fetch();
 				} catch (Swissknife33Exception e) {
 					return false;
 				}

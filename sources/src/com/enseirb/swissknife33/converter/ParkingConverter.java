@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.json.JSONException;
 
+import android.content.Context;
+
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.dao.DAOFactory;
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
@@ -14,6 +16,11 @@ public class ParkingConverter {
 
 	private static final int UNDEFINED = -1;
 	private DAOFactory daoFactory = new DAOFactory();
+	private Context context;
+	
+	public ParkingConverter(Context context){
+		this.context = context;
+	}
 
 	public List<Parking> fetch() throws Swissknife33Exception {
 
@@ -21,7 +28,7 @@ public class ParkingConverter {
 		List<Parking> parkings = new LinkedList<Parking>();
 
 		try {
-			parkingsDTO = daoFactory.getParkingDAO().fetch();
+			parkingsDTO = daoFactory.getParkingDAO(context).fetch();
 			for (ParkingDTO p : parkingsDTO) {
 				parkings.add(toParking(p));
 			}
