@@ -13,11 +13,14 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Parking;
+import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
+import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
 
 public class MainActivity extends Activity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks,
-FetchParkingListener {
+FetchParkingListener, 
+FetchPersonalItemListener{
 //,
 //FetchNestListener,
 // ... 
@@ -155,6 +158,34 @@ FetchParkingListener {
 	private void updateParkings(List<Parking> parkings) {
 		System.out.println(parkings.size() + " parkings fetched !");
 		for (Parking p : parkings) {
+			System.out.println(p.toString());
+		}
+	}
+
+	@Override
+	public void onWaitForPersonalItems() {
+		// TODO Auto-generated method stub
+		System.out.println("Fetching personalItems.");
+		
+	}
+
+	@Override
+	public void onFetchPersonalItemsSuccess(List<PersonalItem> personalItems) {
+		// TODO Auto-generated method stub
+		updatePersonalItems(personalItems);
+		
+	}
+
+	@Override
+	public void onFetchPersonalItemsError() {
+		// TODO Auto-generated method stub
+		System.out.println("An error occured while fetching personalItems.");
+		
+	}
+	
+	private void updatePersonalItems(List<PersonalItem> personalItems) {
+		System.out.println(personalItems.size() + " personalItems fetched !");
+		for (PersonalItem p : personalItems) {
 			System.out.println(p.toString());
 		}
 	}

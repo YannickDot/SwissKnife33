@@ -17,13 +17,15 @@ public class PersonalItemDAO {
 	
 	private final Context context;
     private final SharedPreferences sharedPrefs;
+    private final PersonalItemParser parser;
 	
 	private static String SAVED_ITEMS_JSON = "savedItemsJSON";
 	private static String EMPTY_STRING = "";
 	private static String SHARED_PREFS_PERSONAL = "shared_prefs_personal_item";
 	
-	public PersonalItemDAO(Context context) {
+	public PersonalItemDAO(Context context, PersonalItemParser parser) {
         this.context = context;
+        this.parser = parser;
         sharedPrefs = context.getSharedPreferences(SHARED_PREFS_PERSONAL, Context.MODE_PRIVATE);
     }
 	
@@ -33,7 +35,6 @@ public class PersonalItemDAO {
 		String savedItems = sharedPrefs.getString(SAVED_ITEMS_JSON, EMPTY_STRING);
 		jsonDataArray = new JSONArray(savedItems);
 		
-		PersonalItemParser parser = new PersonalItemParser();
 		List<PersonalItemDTO> list = parser.parse(jsonDataArray);
 		
 		return list;
@@ -41,6 +42,7 @@ public class PersonalItemDAO {
 	}
 	
 	public int save(List<PersonalItemDTO> list){
+		//Temporary solution here
 		String jsonString = "[";
 		for (PersonalItemDTO p : list){
 			jsonString += p.toJSON() + ",";

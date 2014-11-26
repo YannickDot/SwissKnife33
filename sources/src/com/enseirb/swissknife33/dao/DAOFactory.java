@@ -1,6 +1,9 @@
 package com.enseirb.swissknife33.dao;
 
+import android.content.Context;
+
 import com.enseirb.swissknife33.parser.ParkingParser;
+import com.enseirb.swissknife33.parser.PersonalItemParser;
 
 public class DAOFactory {
 
@@ -11,6 +14,12 @@ public class DAOFactory {
 	public ParkingDAO getParkingDAO() {
 		ParkingDAO dao = new ParkingDAO(WEBSERVICE_URL_PREFIX + PARKING_URL + FORMAT_JSON,
 										new ParkingParser());
+		return dao;
+	}
+	
+	public PersonalItemDAO getPersonalItemDAO(Context context) {
+		PersonalItemDAO dao = new PersonalItemDAO(context,
+										new PersonalItemParser());
 		return dao;
 	}
 }
