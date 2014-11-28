@@ -3,7 +3,6 @@ package com.enseirb.swissknife33.presenter;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -55,7 +54,7 @@ FetchPersonalItemListener{
 		
 		// Getting reference to map
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-		googleMapManager = new GoogleMapManager(mapFragment);
+		googleMapManager = new GoogleMapManager(mapFragment, this);
 
 		checkBoxJob();
 
