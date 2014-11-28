@@ -3,6 +3,7 @@ package com.enseirb.swissknife33.presenter;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
+import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends Activity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks,
@@ -33,6 +35,7 @@ FetchPersonalItemListener{
 	private CheckBox defibrillatorsBox;
 
 	private BusinessFactory businessFactory = new BusinessFactory();
+	private GoogleMapManager googleMapManager; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,10 @@ FetchPersonalItemListener{
 		parkingsBox = (CheckBox) findViewById(R.id.parkingsBox);
 		nestsBox = (CheckBox) findViewById(R.id.nestsBox);
 		defibrillatorsBox = (CheckBox) findViewById(R.id.defibrillatorsBox);
+		
+		// Getting reference to map
+		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+		googleMapManager = new GoogleMapManager(mapFragment);
 
 		checkBoxJob();
 
