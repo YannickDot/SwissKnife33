@@ -1,4 +1,4 @@
-package JSONUtils;
+package com.enseirb.swissknife33.dao.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

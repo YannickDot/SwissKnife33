@@ -34,6 +34,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		map.setMyLocationEnabled(true);
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(centreBordeaux,
 				zoomLevel));
+		
 	}
 	
 	public void renderParkingMarkers(List<Parking> list){
