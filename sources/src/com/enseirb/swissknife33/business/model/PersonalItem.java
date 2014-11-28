@@ -3,8 +3,8 @@ package com.enseirb.swissknife33.business.model;
 public class PersonalItem {
 	private int key;
     private String name;
-    private float x_long;
-    private float y_lat;
+    private float longitude;
+    private float latitude;
     
 	public int getKey() {
 		return key;
@@ -20,18 +20,18 @@ public class PersonalItem {
 		this.name = name;
 		return this;
 	}
-	public float getX_long() {
-		return x_long;
+	public float getLongitude() {
+		return longitude;
 	}
-	public PersonalItem setX_long(float x_long) {
-		this.x_long = x_long;
+	public PersonalItem setLongitude(float longitude) {
+		this.longitude = longitude;
 		return this;
 	}
-	public float getY_lat() {
-		return y_lat;
+	public float getLatitude() {
+		return latitude;
 	}
-	public PersonalItem setY_lat(float y_lat) {
-		this.y_lat = y_lat;
+	public PersonalItem setLatitude(float latitude) {
+		this.latitude = latitude;
 		return this;
 	}
     

@@ -35,14 +35,15 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		//TODO : Here I tried to make the application offline first and check 
 		// if data is cached before fetching it from the web.
 		
-		List<ParkingDTO> list = fetchFromCache();
-		if (list.isEmpty()) {
-			List<ParkingDTO> list2 = fetchFromURL();
-			
-			return list2;
-		} else {
-			return list;
-		}
+		List<ParkingDTO> list = fetchFromURL();
+		return list;
+//		if (list.isEmpty()) {
+//			List<ParkingDTO> list2 = fetchFromURL();
+//			
+//			return list2;
+//		} else {
+//			return list;
+//		}
 
 	}
 	

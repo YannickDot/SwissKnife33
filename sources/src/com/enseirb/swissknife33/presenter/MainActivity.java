@@ -167,6 +167,7 @@ FetchPersonalItemListener{
 		for (Parking p : parkings) {
 			System.out.println(p.toString());
 		}
+		googleMapManager.renderParkingMarkers(parkings);
 	}
 
 	@Override

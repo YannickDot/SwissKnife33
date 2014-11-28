@@ -6,8 +6,8 @@ public class PersonalItemDTO extends AbstractDTO {
 	//TODO Getters + Fluent Setters
 	private String key;
     private String name;
-    private String x_long;
-    private String y_lat;
+    private String longitude;
+    private String latitude;
     
 	public String getKey() {
 		return key;
@@ -21,17 +21,17 @@ public class PersonalItemDTO extends AbstractDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getX_long() {
-		return x_long;
+	public String getLongitude() {
+		return longitude;
 	}
-	public void setX_long(String x_long) {
-		this.x_long = x_long;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
-	public String getY_lat() {
-		return y_lat;
+	public String getLatitude() {
+		return latitude;
 	}
-	public void setY_lat(String y_lat) {
-		this.y_lat = y_lat;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 	
 	public String toJSON() {
@@ -39,8 +39,8 @@ public class PersonalItemDTO extends AbstractDTO {
 		json = "{"
 				+"\"key\":"+"\""+key+"\","
 				+"\"name\":"+"\""+name+"\","
-				+"\"x_long\":"+"\""+x_long+"\","
-				+"\"y_lat\":"+"\""+y_lat+"\""
+				+"\"x_long\":"+"\""+longitude+"\","
+				+"\"y_lat\":"+"\""+latitude+"\""
 				+"}"; 
 		
 		return json;

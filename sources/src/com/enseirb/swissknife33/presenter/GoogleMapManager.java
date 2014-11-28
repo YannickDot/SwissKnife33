@@ -3,6 +3,7 @@ package com.enseirb.swissknife33.presenter;
 import java.util.List;
 
 import com.enseirb.swissknife33.business.model.Parking;
+import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -31,6 +32,19 @@ public class GoogleMapManager {
 		float color = BitmapDescriptorFactory.HUE_CYAN;
 		
 		for(Parking item : list) {
+			map.addMarker(new MarkerOptions()
+			.icon(BitmapDescriptorFactory.defaultMarker(color))
+			.anchor(0.0f, 1.0f)
+			.title(item.getName())
+			.position(new LatLng(item.getLatitude(), item.getLongitude()))
+			);
+		}
+	}
+	
+	public void renderPersonalItemMarkers(List<PersonalItem> list){
+		float color = BitmapDescriptorFactory.HUE_RED;
+		
+		for(PersonalItem item : list) {
 			map.addMarker(new MarkerOptions()
 			.icon(BitmapDescriptorFactory.defaultMarker(color))
 			.anchor(0.0f, 1.0f)

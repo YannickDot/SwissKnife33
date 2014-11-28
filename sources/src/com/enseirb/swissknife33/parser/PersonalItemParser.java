@@ -21,9 +21,9 @@ public class PersonalItemParser extends AbstractParser<PersonalItemDTO> {
 			if (jsonPersonalItem.has("name"))
 				p.setName(jsonPersonalItem.getString("name"));
 			if (jsonPersonalItem.has("x_long"))
-				p.setX_long(jsonPersonalItem.getString("x_long"));
+				p.setLongitude(jsonPersonalItem.getString("x_long"));
 			if (jsonPersonalItem.has("y_lat"))
-				p.setY_lat(jsonPersonalItem.getString("y_lat"));
+				p.setLatitude(jsonPersonalItem.getString("y_lat"));
 			list.add(p);
 		}
 		
