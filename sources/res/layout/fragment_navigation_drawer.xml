@@ -10,24 +10,35 @@
         android:id="@+id/toiletsBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_toilets" />
+        android:text="@string/title_toilets"
+        android:textColor="@color/toiletMarkersColor" />
 
     <CheckBox
         android:id="@+id/parkingsBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_parkings" />
+        android:text="@string/title_parkings"
+        android:textColor="@color/parkingMarkersColor" />
     
     <CheckBox
         android:id="@+id/nestsBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_nests" />
+        android:text="@string/title_nests"
+        android:textColor="@color/nestMarkersColor" />
     
     <CheckBox
         android:id="@+id/defibrillatorsBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_defibrillators" />
+        android:text="@string/title_defibrillators"
+        android:textColor="@color/defibrillatorMarkersColor" />
+    
+    <CheckBox
+        android:id="@+id/personalItemBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_personalItem"
+        android:textColor="@color/personalMarkersColor" />
 
 </LinearLayout>

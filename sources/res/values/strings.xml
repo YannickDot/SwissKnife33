@@ -6,6 +6,7 @@
     <string name="title_parkings">Parkings</string>
     <string name="title_nests">Nests</string>
     <string name="title_defibrillators">Defibrillators</string>
+    <string name="title_personalItem">Personal Markers</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>

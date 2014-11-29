@@ -11,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.enseirb.swissknife33.R;
-import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
@@ -32,8 +31,8 @@ FetchPersonalItemListener{
 	private CheckBox parkingsBox;
 	private CheckBox nestsBox;
 	private CheckBox defibrillatorsBox;
+	private CheckBox personalBox;
 
-	private BusinessFactory businessFactory = new BusinessFactory();
 	private GoogleMapManager googleMapManager; 
 
 	@Override
@@ -51,7 +50,7 @@ FetchPersonalItemListener{
 		parkingsBox = (CheckBox) findViewById(R.id.parkingsBox);
 		nestsBox = (CheckBox) findViewById(R.id.nestsBox);
 		defibrillatorsBox = (CheckBox) findViewById(R.id.defibrillatorsBox);
-		
+		personalBox = (CheckBox) findViewById(R.id.personalItemBox);
 		// Getting reference to map
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		googleMapManager = new GoogleMapManager(mapFragment, this);
@@ -59,39 +58,68 @@ FetchPersonalItemListener{
 		checkBoxJob();
 
 		// Getting Parking data. See bottom of the code to tell how to process it
-		businessFactory.getParkingBusiness(this, this)
-			.createFetchParkingsAsyncTask().execute();
-	}
 
+	}
+	
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction().replace(R.id.map,
+				PlaceholderFragment.newInstance(position + 1)).commit();
 		fragmentManager
 		.beginTransaction().commit();
-		// TODO Les deux lignes d'en dessous sont à remettre. Ne compilait plus sinon.
-		// J'ai peut-être fait une erreur de merge !
-		//		.replace(R.id.map,
-		//				PlaceholderFragment.newInstance(position + 1)).commit();
 	}
 
 	public void checkBoxJob(){
-		toiletssBoxJob();
+		toiletsBoxJob();
 		parkingsBoxJob();
 		nestsBoxJob();
 		defibrillatorsBoxJob();
+		personalBoxJob();
+	}
+	
+	private void toiletsBoxJob() {
+		toiletsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(toiletsBox.isChecked()){
+					toiletsBox.setText("Toilets checked");
+				}
+				else{
+					toiletsBox.setText("Toilets unchecked");
+				}
+			}
+		});
 	}
 
+	private void parkingsBoxJob() {
+		parkingsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(parkingsBox.isChecked()){
+					googleMapManager.showParkingMarkers();
+				}
+				else{
+					//REmove parking markers
+					googleMapManager.hideParkingMarkers();
+				}				
+			}
+		});
+	}
+	
 	private void nestsBoxJob() {
 		nestsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(nestsBox.isChecked()){
-					nestsBox.setText("nests checked");
+					nestsBox.setText("Nests checked");
 				}
 				else{
-					nestsBox.setText("nests unchecked");
+					nestsBox.setText("Nests unchecked");
 				}
 			}
 		});
@@ -103,45 +131,34 @@ FetchPersonalItemListener{
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(defibrillatorsBox.isChecked()){
-					defibrillatorsBox.setText("defibrillators checked");
+					defibrillatorsBox.setText("Defibrillators checked");
 				}
 				else{
-					defibrillatorsBox.setText(" defibrillators unchecked");
+					defibrillatorsBox.setText("Defibrillators unchecked");
 				}
 			}
 		});		
 	}
-
-	private void parkingsBoxJob() {
-		parkingsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(parkingsBox.isChecked()){
-					parkingsBox.setText("parkings checked");
-				}
-				else{
-					parkingsBox.setText("parkings unchecked");
-				}				
-			}
-		});
-	}
-
-	private void toiletssBoxJob() {
-		toiletsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	
+	private void personalBoxJob() {
+		personalBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(toiletsBox.isChecked()){
-					toiletsBox.setText("toilets checked");
+				if(personalBox.isChecked()){
+					googleMapManager.showPersonalMarkers();
 				}
 				else{
-					toiletsBox.setText("toilets unchecked");
+					googleMapManager.hidePersonalMarkers();
 				}
 			}
-		});
+		});		
 	}
-
+	
+	public void activatePersonalMarkers(){
+		personalBox.setActivated(true);
+	}
+	
 	@Override
 	public void onFetchParkingsSuccess(List<Parking> parkings) {
 		//TODO Display parkings data
@@ -160,7 +177,7 @@ FetchPersonalItemListener{
 		System.out.println("Fetching parkings.");
 	}
 	
-	//TODO Display parkings data
+	//TODO display parkings data
 	private void updateParkings(List<Parking> parkings) {
 		System.out.println(parkings.size() + " parkings fetched !");
 		for (Parking p : parkings) {

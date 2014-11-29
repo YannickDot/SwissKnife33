@@ -2,5 +2,10 @@
 <resources>
     <color name="ColorPrimary">#D32F2F</color>
     <color name="ColorPrimaryDark">#D32F2F</color>
+    <color name="toiletMarkersColor">#EAC300</color>
+    <color name="parkingMarkersColor">#00719A</color>
+    <color name="nestMarkersColor">#048000</color>
+    <color name="defibrillatorMarkersColor">#E10007</color>
+    <color name="personalMarkersColor">#8016AE</color>
     
 </resources>
