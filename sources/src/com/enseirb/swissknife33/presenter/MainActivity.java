@@ -3,7 +3,6 @@ package com.enseirb.swissknife33.presenter;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.CheckBox;
@@ -63,12 +62,7 @@ FetchPersonalItemListener{
 	
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		// update the main content by replacing fragments
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.map,
-				PlaceholderFragment.newInstance(position + 1)).commit();
-		fragmentManager
-		.beginTransaction().commit();
+
 	}
 
 	public void checkBoxJob(){
