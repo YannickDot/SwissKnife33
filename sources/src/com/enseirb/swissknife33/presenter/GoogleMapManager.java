@@ -23,10 +23,14 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	private BusinessFactory businessFactory = new BusinessFactory();
 	private GoogleMap map;
-	private int zoomLevel = 15;
+	private int zoomLevel = 14;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
 	public Context context;
+	
 	public ArrayList<Marker> parkingMarkers = new ArrayList<Marker>();
+	public ArrayList<Marker> nestMarkers = new ArrayList<Marker>();
+	public ArrayList<Marker> toiletMarkers = new ArrayList<Marker>();
+	public ArrayList<Marker> defibrillatorMarkers = new ArrayList<Marker>();
 	public ArrayList<Marker> personalMarkers = new ArrayList<Marker>();
 
 	public GoogleMapManager(MapFragment mapFragment, Context context){
@@ -35,14 +39,12 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		initMap();
 
 		map.setOnMapLongClickListener((OnMapLongClickListener) this); 
-
 	}
 
 	private void initMap() {
 		map.setMyLocationEnabled(true);
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(centreBordeaux,
 				zoomLevel));
-
 	}
 
 	public void renderParkingMarkers(List<Parking> list){
@@ -129,6 +131,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 			marker.setVisible(false);
 		}
 	}
+	
+	
 	/* 	
 	color = BitmapDescriptorFactory.HUE_CYAN;
 	color = BitmapDescriptorFactory.HUE_BLUE;
@@ -136,7 +140,6 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	color = BitmapDescriptorFactory.HUE_GREEN;
 	color = BitmapDescriptorFactory.HUE_YELLOW;
 	color = BitmapDescriptorFactory.HUE_VIOLET;
-
 	 */
 
 }
