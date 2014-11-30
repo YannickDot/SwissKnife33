@@ -88,10 +88,10 @@ FetchDefibrillatorListener {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(toiletsBox.isChecked()){
-					toiletsBox.setText("Toilets checked");
+					googleMapManager.showToiletMarkers();
 				}
 				else{
-					toiletsBox.setText("Toilets unchecked");
+					googleMapManager.hideToiletMarkers();
 				}
 			}
 		});
@@ -119,10 +119,10 @@ FetchDefibrillatorListener {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(nestsBox.isChecked()){
-					nestsBox.setText("Nests checked");
+					googleMapManager.showNestMarkers();
 				}
 				else{
-					nestsBox.setText("Nests unchecked");
+					googleMapManager.hideNestMarkers();
 				}
 			}
 		});
@@ -257,19 +257,25 @@ FetchDefibrillatorListener {
 	@Override
 	public void onWaitForNests() {
 		// TODO Auto-generated method stub
+		System.out.println("Fetching nests.");
 		
 	}
 
 	@Override
-	public void onFetchNestsSuccess(List<Nest> data) {
+	public void onFetchNestsSuccess(List<Nest> nests) {
 		// TODO Auto-generated method stub
-		
+		updateNests(nests);
 	}
 
 	@Override
 	public void onFetchNestsError() {
 		// TODO Auto-generated method stub
+		System.out.println("An error occured while fetching nests.");
 		
+	}
+	
+	private void updateNests(List<Nest> nests) {
+		googleMapManager.renderNestMarkers(nests);
 	}
 	
 	
@@ -279,18 +285,25 @@ FetchDefibrillatorListener {
 	@Override
 	public void onWaitForToilets() {
 		// TODO Auto-generated method stub
+		System.out.println("Fetching toilets.");
 		
 	}
 	
 	@Override
-	public void onFetchToiletsSuccess(List<Toilet> data) {
+	public void onFetchToiletsSuccess(List<Toilet> toilets) {
 		// TODO Auto-generated method stub
+		updateToilets(toilets);
 		
 	}
 
 	@Override
 	public void onFetchToiletsError() {
 		// TODO Auto-generated method stub
+		System.out.println("An error occured while fetching toilets.");
 		
+	}
+	
+	private void updateToilets(List<Toilet> toilets) {
+		googleMapManager.renderToiletMarkers(toilets);
 	}
 }

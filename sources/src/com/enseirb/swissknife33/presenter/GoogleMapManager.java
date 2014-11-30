@@ -7,11 +7,15 @@ import android.content.Context;
 
 import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Defibrillator;
+import com.enseirb.swissknife33.business.model.Nest;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
+import com.enseirb.swissknife33.business.model.Toilet;
 import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
+import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
+import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -49,6 +53,9 @@ public class GoogleMapManager implements OnMapLongClickListener {
 				zoomLevel));
 	}
 
+	
+	//Parkings Methods
+	
 	public void renderParkingMarkers(List<Parking> list){
 		float color = BitmapDescriptorFactory.HUE_CYAN;
 
@@ -81,7 +88,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		}
 	}
 
-
+	//Personal Methods
+	
 	public void renderPersonalItemMarkers(List<PersonalItem> list){
 		float color = BitmapDescriptorFactory.HUE_RED;
 
@@ -114,9 +122,10 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		}
 	}
 	
+	//Defibrillators Markers 
 	
 	public void renderDefibrillatorMarkers(List<Defibrillator> list){
-		float color = BitmapDescriptorFactory.HUE_GREEN;
+		float color = BitmapDescriptorFactory.HUE_RED;
 
 		for(Defibrillator item : list) {
 			defibrillatorMarkers.add(
@@ -143,6 +152,74 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void hideDefibrillatorMarkers(){
 		for(Marker marker : defibrillatorMarkers){
+			marker.setVisible(false);
+		}
+	}
+	
+	//Nests Methods 
+	
+	public void renderNestMarkers(List<Nest> list){
+		float color = BitmapDescriptorFactory.HUE_GREEN;
+
+		for(Nest item : list) {
+			nestMarkers.add(
+					map.addMarker(new MarkerOptions()
+					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.anchor(0.0f, 1.0f)
+					.title(item.getName())
+					.position(new LatLng(item.getLatitude(), item.getLongitude()))
+							));;
+		}
+	}
+
+	public void showNestMarkers(){
+		if(nestMarkers.isEmpty()){
+			businessFactory.getNestBusiness(context, (FetchNestListener) context)
+			.createFetchNestsAsyncTask().execute();
+		}
+		else{
+			for(Marker marker : defibrillatorMarkers){
+				marker.setVisible(true);
+			}
+		}
+	}
+
+	public void hideNestMarkers(){
+		for(Marker marker : nestMarkers){
+			marker.setVisible(false);
+		}
+	}
+	
+	//Toilets Methods 
+	
+	public void renderToiletMarkers(List<Toilet> list){
+		float color = BitmapDescriptorFactory.HUE_YELLOW;
+
+		for(Toilet item : list) {
+			toiletMarkers.add(
+					map.addMarker(new MarkerOptions()
+					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.anchor(0.0f, 1.0f)
+					.title(item.getName())
+					.position(new LatLng(item.getLatitude(), item.getLongitude()))
+							));;
+		}
+	}
+
+	public void showToiletMarkers(){
+		if(defibrillatorMarkers.isEmpty()){
+			businessFactory.getToiletBusiness(context, (FetchToiletListener) context)
+			.createFetchToiletsAsyncTask().execute();
+		}
+		else{
+			for(Marker marker : toiletMarkers){
+				marker.setVisible(true);
+			}
+		}
+	}
+
+	public void hideToiletMarkers(){
+		for(Marker marker : toiletMarkers){
 			marker.setVisible(false);
 		}
 	}
