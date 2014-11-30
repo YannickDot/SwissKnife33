@@ -26,7 +26,7 @@ public class BusinessFactory {
 		return new NestBusiness(context, listener);
 	}
 	
-	public DefibrillatorBusiness getNestBusiness(Context context, FetchDefibrillatorListener listener){
+	public DefibrillatorBusiness getDefibrillatorBusiness(Context context, FetchDefibrillatorListener listener){
 		return new DefibrillatorBusiness(context, listener);
 	}
 }

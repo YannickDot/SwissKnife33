@@ -10,16 +10,25 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.enseirb.swissknife33.R;
+import com.enseirb.swissknife33.business.model.Defibrillator;
+import com.enseirb.swissknife33.business.model.Nest;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
+import com.enseirb.swissknife33.business.model.Toilet;
+import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
+import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
+import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
 import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends Activity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks,
 FetchParkingListener, 
-FetchPersonalItemListener{
+FetchPersonalItemListener,
+FetchToiletListener,
+FetchNestListener, 
+FetchDefibrillatorListener {
 //,
 //FetchNestListener,
 // ... 
@@ -125,10 +134,10 @@ FetchPersonalItemListener{
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(defibrillatorsBox.isChecked()){
-					defibrillatorsBox.setText("Defibrillators checked");
+					googleMapManager.showDefibrillatorMarkers();
 				}
 				else{
-					defibrillatorsBox.setText("Defibrillators unchecked");
+					googleMapManager.hideDefibrillatorMarkers();
 				}
 			}
 		});		
@@ -152,6 +161,10 @@ FetchPersonalItemListener{
 	public void activatePersonalMarkers(){
 		personalBox.setActivated(true);
 	}
+	
+	
+	
+	//Parkings methods 
 	
 	@Override
 	public void onFetchParkingsSuccess(List<Parking> parkings) {
@@ -179,6 +192,9 @@ FetchPersonalItemListener{
 		}
 		googleMapManager.renderParkingMarkers(parkings);
 	}
+	
+	
+	//PersonalItems Methods
 
 	@Override
 	public void onWaitForPersonalItems() {
@@ -206,5 +222,75 @@ FetchPersonalItemListener{
 		for (PersonalItem p : personalItems) {
 			System.out.println(p.toString());
 		}
+	}
+	
+	
+	//Defibrillators Methods
+
+	@Override
+	public void onWaitForDefibrillators() {
+		// TODO Auto-generated method stub
+		System.out.println("Fetching defibrillators.");
+	}
+
+	@Override
+	public void onFetchDefibrillatorsSuccess(List<Defibrillator> defibrillators) {
+		// TODO Auto-generated method stub
+		updateDefibrillators(defibrillators);
+	}
+
+	@Override
+	public void onFetchDefibrillatorsError() {
+		// TODO Auto-generated method stub
+		System.out.println("An error occured while fetching defibrillators.");
+		
+	}
+	
+	private void updateDefibrillators(List<Defibrillator> defibrillators) {
+		googleMapManager.renderDefibrillatorMarkers(defibrillators);
+	}
+	
+	
+	
+	//Nests Methods 
+
+	@Override
+	public void onWaitForNests() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFetchNestsSuccess(List<Nest> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFetchNestsError() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	//Toilets Methods
+
+	@Override
+	public void onWaitForToilets() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void onFetchToiletsSuccess(List<Toilet> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFetchToiletsError() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,8 +6,10 @@ import java.util.List;
 import android.content.Context;
 
 import com.enseirb.swissknife33.business.BusinessFactory;
+import com.enseirb.swissknife33.business.model.Defibrillator;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
+import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -94,26 +96,6 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		}
 	}
 
-
-	@Override
-	public void onMapLongClick(LatLng pos) {
-		float color = BitmapDescriptorFactory.HUE_VIOLET;
-		String markerTitle = "My marker";
-
-		MarkerOptions marker = new MarkerOptions()
-		.icon(BitmapDescriptorFactory.defaultMarker(color))
-		.anchor(0.0f, 1.0f)
-		.title(markerTitle)
-		.position(pos);
-
-		showPersonalMarkers();
-		personalMarkers.add(map.addMarker(marker));
-
-		//context.activatePersonalMarkers(); ??
-		//save marker to storage
-
-	}
-
 	public void showPersonalMarkers(){
 		if(personalMarkers.isEmpty()){
 			businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
@@ -133,6 +115,39 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	}
 	
 	
+	public void renderDefibrillatorMarkers(List<Defibrillator> list){
+		float color = BitmapDescriptorFactory.HUE_GREEN;
+
+		for(Defibrillator item : list) {
+			defibrillatorMarkers.add(
+					map.addMarker(new MarkerOptions()
+					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.anchor(0.0f, 1.0f)
+					.title(item.getName())
+					.position(new LatLng(item.getLatitude(), item.getLongitude()))
+							));;
+		}
+	}
+
+	public void showDefibrillatorMarkers(){
+		if(defibrillatorMarkers.isEmpty()){
+			businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
+			.createFetchDefibrillatorsAsyncTask().execute();
+		}
+		else{
+			for(Marker marker : defibrillatorMarkers){
+				marker.setVisible(true);
+			}
+		}
+	}
+
+	public void hideDefibrillatorMarkers(){
+		for(Marker marker : defibrillatorMarkers){
+			marker.setVisible(false);
+		}
+	}
+	
+	
 	/* 	
 	color = BitmapDescriptorFactory.HUE_CYAN;
 	color = BitmapDescriptorFactory.HUE_BLUE;
@@ -141,5 +156,24 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	color = BitmapDescriptorFactory.HUE_YELLOW;
 	color = BitmapDescriptorFactory.HUE_VIOLET;
 	 */
+	
+	@Override
+	public void onMapLongClick(LatLng pos) {
+		float color = BitmapDescriptorFactory.HUE_VIOLET;
+		String markerTitle = "My marker";
+
+		MarkerOptions marker = new MarkerOptions()
+		.icon(BitmapDescriptorFactory.defaultMarker(color))
+		.anchor(0.0f, 1.0f)
+		.title(markerTitle)
+		.position(pos);
+
+		showPersonalMarkers();
+		personalMarkers.add(map.addMarker(marker));
+
+		//context.activatePersonalMarkers(); ??
+		//save marker to storage
+
+	}
 
 }

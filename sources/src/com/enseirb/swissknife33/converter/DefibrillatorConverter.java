@@ -39,6 +39,8 @@ public class DefibrillatorConverter {
 	}
 
 	private Defibrillator toDefibrillator(DefibrillatorDTO d) {
+		
+		//TODO: Invalid float exception to fix here ....
 		Defibrillator defibrillator = new Defibrillator()
 		.setKey(Integer.valueOf(d.getKey()))
 		.setAddress(d.getAddress())
