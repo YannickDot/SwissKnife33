@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
+import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
 
 public class BusinessFactory {
 	
@@ -13,5 +14,9 @@ public class BusinessFactory {
 	
 	public PersonalItemBusiness getPersonalItemBusiness(Context context, FetchPersonalItemListener listener){
 		return new PersonalItemBusiness(context, listener);
+	}
+	
+	public ToiletBusiness getToiletBusiness(Context context, FetchToiletListener listener){
+		return new ToiletBusiness(context, listener);
 	}
 }
