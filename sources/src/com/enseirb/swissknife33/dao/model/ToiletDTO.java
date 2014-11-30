@@ -1,6 +1,6 @@
 package com.enseirb.swissknife33.dao.model;
 
-public class ToiletsDTO extends AbstractDTO {
+public class ToiletDTO extends AbstractDTO {
 	
 	private String key;
 	private String address;
@@ -13,49 +13,49 @@ public class ToiletsDTO extends AbstractDTO {
 	public String getKey() {
 		return key;
 	}
-	public ToiletsDTO setKey(String key) {
+	public ToiletDTO setKey(String key) {
 		this.key = key;
 		return this;
 	}
 	public String getAddress() {
 		return address;
 	}
-	public ToiletsDTO setAddress(String address) {
+	public ToiletDTO setAddress(String address) {
 		this.address = address;
 		return this;
 	}
 	public String getName() {
 		return name;
 	}
-	public ToiletsDTO setName(String name) {
+	public ToiletDTO setName(String name) {
 		this.name = name;
 		return this;
 	}
 	public String getNeighborhood() {
 		return neighborhood;
 	}
-	public ToiletsDTO setNeighborhood(String neighborhood) {
+	public ToiletDTO setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 		return this;
 	}
 	public String getTypology() {
 		return typology;
 	}
-	public ToiletsDTO setTypology(String typology) {
+	public ToiletDTO setTypology(String typology) {
 		this.typology = typology;
 		return this;
 	}
 	public String getLongitude() {
 		return longitude;
 	}
-	public ToiletsDTO setLongitude(String longitude) {
+	public ToiletDTO setLongitude(String longitude) {
 		this.longitude = longitude;
 		return this;
 	}
 	public String getLatitude() {
 		return latitude;
 	}
-	public ToiletsDTO setLatitude(String latitude) {
+	public ToiletDTO setLatitude(String latitude) {
 		this.latitude = latitude;
 		return this;
 	}

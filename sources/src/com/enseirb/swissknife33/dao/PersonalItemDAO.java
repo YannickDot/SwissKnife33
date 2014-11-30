@@ -23,7 +23,7 @@ public class PersonalItemDAO {
 	private static String EMPTY_STRING = "";
 	private static String SHARED_PREFS_PERSONAL = "shared_prefs_personal_item";
 	
-	public PersonalItemDAO(Context context, PersonalItemParser parser) {
+	public PersonalItemDAO(PersonalItemParser parser, Context context) {
         this.context = context;
         this.parser = parser;
         sharedPrefs = context.getSharedPreferences(SHARED_PREFS_PERSONAL, Context.MODE_PRIVATE);
