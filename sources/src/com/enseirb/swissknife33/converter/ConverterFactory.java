@@ -11,4 +11,17 @@ public class ConverterFactory {
 	public PersonalItemConverter getPersonalItemConverter(Context context) {
 		return new PersonalItemConverter(context);
 	}
+	
+	public NestConverter getNestConverter(Context context) {
+		return new NestConverter(context);
+	}
+	
+	public ToiletConverter getToiletConverter(Context context) {
+		return new ToiletConverter(context);
+	}
+	
+	public DefibrillatorConverter getDefibrillatorConverter(Context context) {
+		return new DefibrillatorConverter(context);
+	}
+	
 }
