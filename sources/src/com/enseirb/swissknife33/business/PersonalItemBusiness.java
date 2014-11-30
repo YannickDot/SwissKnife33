@@ -57,4 +57,39 @@ public class PersonalItemBusiness {
 			}
 		};
 	}
+	
+	public AsyncTask<Void, Void, Boolean> createSavePersonalItemsAsyncTask(final List<PersonalItem> list) {
+		return new AsyncTask<Void, Void, Boolean>() {
+
+			@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+				//listener.onWaitForPersonalItems();
+				System.out.println("saving PersonalItems.");
+			}
+
+			@Override
+			protected Boolean doInBackground(Void... params) {
+
+				try {
+					converterFactory.getPersonalItemConverter(context).save(list);
+				} catch (Swissknife33Exception e) {
+					return false;
+				}
+				return true;
+			}
+
+			@Override
+			protected void onPostExecute(Boolean success) {
+				if (success) {
+					//listener.onFetchPersonalItemsSuccess(personalItems);
+					System.out.println("PersonalItems saved.");
+				}
+				else {
+					//listener.onFetchPersonalItemsError();
+					System.out.println("PersonalItems save failed.");
+				}
+			}
+		};
+	}
 }

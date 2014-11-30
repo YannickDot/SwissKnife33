@@ -36,6 +36,23 @@ public class PersonalItemConverter {
 
 		return personalItems;
 	}
+	
+	public int save(List<PersonalItem> personalItems) throws Swissknife33Exception{
+		List<PersonalItemDTO> personalItemsDTO = new LinkedList<PersonalItemDTO>();
+		int saved = 0;
+		
+		try {
+			for (PersonalItem p : personalItems) {
+				personalItemsDTO.add(toPersonalItemDTO(p));
+			}
+			saved = daoFactory.getPersonalItemDAO(context).save(personalItemsDTO);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return saved;
+	}
 
 	private PersonalItem toPersonalItem(PersonalItemDTO p) {
 		PersonalItem personalItem = new PersonalItem()
@@ -45,6 +62,16 @@ public class PersonalItemConverter {
 		.setLatitude(Float.valueOf(p.getLatitude()));
 		
 		return personalItem;
+	}
+	
+	private PersonalItemDTO toPersonalItemDTO(PersonalItem p) {
+		PersonalItemDTO personalItemDTO = new PersonalItemDTO()
+		.setKey(String.valueOf(p.getKey()))
+		.setName(p.getName())
+		.setLongitude(String.valueOf(p.getLongitude()))
+		.setLatitude(String.valueOf(p.getLatitude()));
+		
+		return personalItemDTO;
 	}
 
 }

@@ -38,6 +38,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	public ArrayList<Marker> toiletMarkers = new ArrayList<Marker>();
 	public ArrayList<Marker> defibrillatorMarkers = new ArrayList<Marker>();
 	public ArrayList<Marker> personalMarkers = new ArrayList<Marker>();
+	
+	public ArrayList<PersonalItem> personalItemsList = new ArrayList<PersonalItem>();
 
 	public GoogleMapManager(MapFragment mapFragment, Context context){
 		this.map = mapFragment.getMap();
@@ -106,8 +108,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showPersonalMarkers(){
 		if(personalMarkers.isEmpty()){
-			businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
-			.createFetchPersonalItemsAsyncTask().execute();
+			//businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+			//.createFetchPersonalItemsAsyncTask().execute();
 		}
 		else{
 			for(Marker marker : personalMarkers){
@@ -140,8 +142,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showDefibrillatorMarkers(){
 		if(defibrillatorMarkers.isEmpty()){
-			businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
-			.createFetchDefibrillatorsAsyncTask().execute();
+			//businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
+			//.createFetchDefibrillatorsAsyncTask().execute();
 		}
 		else{
 			for(Marker marker : defibrillatorMarkers){
@@ -244,12 +246,22 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		.anchor(0.0f, 1.0f)
 		.title(markerTitle)
 		.position(pos);
+		
+		PersonalItem personalItem = new PersonalItem()
+		.setKey(0)
+		.setName(markerTitle)
+		.setLongitude((float) pos.longitude)
+		.setLatitude((float) pos.latitude);
 
 		showPersonalMarkers();
 		personalMarkers.add(map.addMarker(marker));
+		personalItemsList.add(personalItem);
+		
 
 		//context.activatePersonalMarkers(); ??
 		//save marker to storage
+		//businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+		//.createSavePersonalItemsAsyncTask(personalItemsList).execute();
 
 	}
 

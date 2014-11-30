@@ -36,19 +36,5 @@ public class PersonalItemDTO extends AbstractDTO {
 		this.latitude = latitude;
 		return this;
 	}
-	
-	public String toJSON() {
-		String json = "";
-		json = "{"
-				+"\"key\":"+"\""+key+"\","
-				+"\"name\":"+"\""+name+"\","
-				+"\"x_long\":"+"\""+longitude+"\","
-				+"\"y_lat\":"+"\""+latitude+"\""
-				+"}"; 
-		
-		return json;
-	}
-    
-    
 
 }

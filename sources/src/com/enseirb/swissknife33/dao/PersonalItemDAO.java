@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,24 +16,27 @@ import com.enseirb.swissknife33.parser.PersonalItemParser;
 
 public class PersonalItemDAO {
 	
+	private static final String LATITUDE = "Latitude";
+	private static final String LONGITUDE = "Longitude";
+	private static final String NAME = "Name";
+	private static final String KEY = "key";
+	
 	private final Context context;
-    private final SharedPreferences sharedPrefs;
     private final PersonalItemParser parser;
 	
-	private static String SAVED_ITEMS_JSON = "savedItemsJSON";
-	private static String EMPTY_STRING = "";
-	private static String SHARED_PREFS_PERSONAL = "shared_prefs_personal_item";
+	private String PERSISTENCE_KEY_PERSONAL_ITEM = "PERSONAL_ITEM_DATA";
+	private Storage storage;
 	
 	public PersonalItemDAO(PersonalItemParser parser, Context context) {
         this.context = context;
         this.parser = parser;
-        sharedPrefs = context.getSharedPreferences(SHARED_PREFS_PERSONAL, Context.MODE_PRIVATE);
+        this.storage = new Storage(context);
     }
 	
 	public List<PersonalItemDTO> fetch() throws JSONException{
 		JSONArray jsonDataArray = new JSONArray();
 		
-		String savedItems = sharedPrefs.getString(SAVED_ITEMS_JSON, EMPTY_STRING);
+		String savedItems = storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM);
 		jsonDataArray = new JSONArray(savedItems);
 		
 		List<PersonalItemDTO> list = parser.parse(jsonDataArray);
@@ -41,18 +45,28 @@ public class PersonalItemDAO {
 		
 	}
 	
-	public int save(List<PersonalItemDTO> list){
-		//Temporary solution here
-		String jsonString = "[";
-		for (PersonalItemDTO p : list){
-			jsonString += p.toJSON() + ",";
-		}
-		jsonString += "{}]";
+	public int save(List<PersonalItemDTO> list) throws JSONException{
+		String jsonString = toJSONText(list);
 		
-		SharedPreferences.Editor editor = sharedPrefs.edit();
-		editor.putString(SAVED_ITEMS_JSON, jsonString);
-		editor.commit();
+		storage.setString(PERSISTENCE_KEY_PERSONAL_ITEM, jsonString);
 		return 0;
+	}
+	
+	private String toJSONText(List<PersonalItemDTO> list) throws JSONException{
+		JSONArray personalItemDTO_JSONArray = new JSONArray();
+		
+		for (PersonalItemDTO p : list){
+			JSONObject personalItemDTO_JSON = new JSONObject();
+			personalItemDTO_JSON
+			.put(KEY, p.getKey())
+			.put(NAME, p.getName())
+			.put(LONGITUDE, p.getLongitude())
+			.put(LATITUDE, p.getLatitude());
+			
+			personalItemDTO_JSONArray.put(personalItemDTO_JSON);
+		}
+			
+		return personalItemDTO_JSONArray.toString();
 	}
 
 }
