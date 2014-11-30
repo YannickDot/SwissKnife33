@@ -2,8 +2,7 @@ package com.enseirb.swissknife33.dao.model;
 
 
 public class PersonalItemDTO extends AbstractDTO {
-	//TODO Switch to english
-	//TODO Getters + Fluent Setters
+	
 	private String key;
     private String name;
     private String longitude;
@@ -12,26 +11,30 @@ public class PersonalItemDTO extends AbstractDTO {
 	public String getKey() {
 		return key;
 	}
-	public void setKey(String key) {
+	public PersonalItemDTO setKey(String key) {
 		this.key = key;
+		return this;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public PersonalItemDTO setName(String name) {
 		this.name = name;
+		return this;
 	}
 	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public PersonalItemDTO setLongitude(String longitude) {
 		this.longitude = longitude;
+		return this;
 	}
 	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public PersonalItemDTO setLatitude(String latitude) {
 		this.latitude = latitude;
+		return this;
 	}
 	
 	public String toJSON() {

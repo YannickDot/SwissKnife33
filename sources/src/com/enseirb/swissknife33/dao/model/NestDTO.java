@@ -1,31 +1,55 @@
 package com.enseirb.swissknife33.dao.model;
 
 public class NestDTO extends AbstractDTO {
-	//TODO Switch to english
-	//TODO Getters + Fluent Setters
-	private String cle;
-	private String nature_abris;
-	private String detail_espece_visee;
-	private String nom;
-	private String x_long;
-	private String y_lat;
-	public void setCle(String cle) {
-		this.cle = cle;
+
+	private String key;
+	private String shelter_type;
+	private String targeted_species;
+	private String name;
+	private String longitude;
+	private String latitude;
+	
+	public String getKey() {
+		return key;
 	}
-	public void setNature_abris(String nature_abris) {
-		this.nature_abris = nature_abris;
+	public NestDTO setKey(String key) {
+		this.key = key;
+		return this;
 	}
-	public void setDetail_espece_visee(String detail_espece_visee) {
-		this.detail_espece_visee = detail_espece_visee;
+	public String getShelter_type() {
+		return shelter_type;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public NestDTO setShelter_type(String shelter_type) {
+		this.shelter_type = shelter_type;
+		return this;
 	}
-	public void setX_long(String x_long) {
-		this.x_long = x_long;
+	public String getTargeted_species() {
+		return targeted_species;
 	}
-	public void setY_lat(String y_lat) {
-		this.y_lat = y_lat;
+	public NestDTO setTargeted_species(String targeted_species) {
+		this.targeted_species = targeted_species;
+		return this;
+	}
+	public String getName() {
+		return name;
+	}
+	public NestDTO setName(String name) {
+		this.name = name;
+		return this;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public NestDTO setLongitude(String longitude) {
+		this.longitude = longitude;
+		return this;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public NestDTO setLatitude(String latitude) {
+		this.latitude = latitude;
+		return this;
 	}
 	
 }

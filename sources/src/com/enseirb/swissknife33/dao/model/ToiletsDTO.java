@@ -1,35 +1,63 @@
 package com.enseirb.swissknife33.dao.model;
 
 public class ToiletsDTO extends AbstractDTO {
-	//TODO Switch to english
-	//TODO Getters + Fluent Setters
-	private String cle;
-	private String adresse;
-	private String nom;
-	private String quartier;
-	private String typologie;
-	private String x_long;
-	private String y_lat;
-	public void setCle(String cle) {
-		this.cle = cle;
+	
+	private String key;
+	private String address;
+	private String name;
+	private String neighborhood;
+	private String typology;
+	private String longitude;
+	private String latitude;
+	
+	public String getKey() {
+		return key;
 	}
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public ToiletsDTO setKey(String key) {
+		this.key = key;
+		return this;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public String getAddress() {
+		return address;
 	}
-	public void setQuartier(String quartier) {
-		this.quartier = quartier;
+	public ToiletsDTO setAddress(String address) {
+		this.address = address;
+		return this;
 	}
-	public void setTypologie(String typologie) {
-		this.typologie = typologie;
+	public String getName() {
+		return name;
 	}
-	public void setX_long(String x_long) {
-		this.x_long = x_long;
+	public ToiletsDTO setName(String name) {
+		this.name = name;
+		return this;
 	}
-	public void setY_lat(String y_lat) {
-		this.y_lat = y_lat;
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+	public ToiletsDTO setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+		return this;
+	}
+	public String getTypology() {
+		return typology;
+	}
+	public ToiletsDTO setTypology(String typology) {
+		this.typology = typology;
+		return this;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public ToiletsDTO setLongitude(String longitude) {
+		this.longitude = longitude;
+		return this;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public ToiletsDTO setLatitude(String latitude) {
+		this.latitude = latitude;
+		return this;
 	}
 	
 }
