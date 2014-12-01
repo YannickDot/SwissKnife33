@@ -1,5 +1,7 @@
 package com.enseirb.swissknife33.business.model;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 public class Toilet {
 	
 	private int key;
@@ -7,8 +9,9 @@ public class Toilet {
 	private String name;
 	private String neighborhood;
 	private String typology;
-	private float longitude;
-	private float latitude;
+	private double longitude;
+	private double latitude;
+	private float color = BitmapDescriptorFactory.HUE_YELLOW;
 	
 	public int getKey() {
 		return key;
@@ -45,18 +48,24 @@ public class Toilet {
 		this.typology = typology;
 		return this;
 	}
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public Toilet setLongitude(float longitude) {
+	public Toilet setLongitude(double longitude) {
 		this.longitude = longitude;
 		return this;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public Toilet setLatitude(float latitude) {
+	public Toilet setLatitude(double latitude) {
 		this.latitude = latitude;
 		return this;
+	}
+	public float getColor() {
+		return color;
+	}
+	public void setColor(float color) {
+		this.color = color;
 	}
 }

@@ -53,8 +53,8 @@ public class DefibrillatorConverter {
 		.setTypology(d.getTypology())
 		.setInstalled(d.getInstalled())
 		.setInformation(d.getInformation())
-		.setLongitude(Float.valueOf(d.getLongitude()))
-		.setLatitude(Float.valueOf(d.getLatitude()));
+		.setLongitude(Double.valueOf(d.getLongitude()))
+		.setLatitude(Double.valueOf(d.getLatitude()));
 		
 		return defibrillator;
 	}

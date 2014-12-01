@@ -1,5 +1,7 @@
 package com.enseirb.swissknife33.business.model;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 public class Defibrillator {
 	
 	private int key;
@@ -11,8 +13,9 @@ public class Defibrillator {
 	private String typology;
 	private String installed;
 	private String information;
-	private float longitude;
-	private float latitude;
+	private double longitude;
+	private double latitude;
+	private float color = BitmapDescriptorFactory.HUE_RED;
 	
 	public int getKey() {
 		return key;
@@ -77,19 +80,25 @@ public class Defibrillator {
 		this.information = information;
 		return this;
 	}
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public Defibrillator setLongitude(float longitude) {
+	public Defibrillator setLongitude(double longitude) {
 		this.longitude = longitude;
 		return this;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public Defibrillator setLatitude(float latitude) {
+	public Defibrillator setLatitude(double latitude) {
 		this.latitude = latitude;
 		return this;
+	}
+	public float getColor() {
+		return color;
+	}
+	public void setColor(float color) {
+		this.color = color;
 	}
 	
 }

@@ -29,7 +29,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	private BusinessFactory businessFactory = new BusinessFactory();
 	private GoogleMap map;
-	private int zoomLevel = 14;
+	private int zoomLevel = 13;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
 	public Context context;
 	
@@ -59,12 +59,11 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	//Parkings Methods
 	
 	public void renderParkingMarkers(List<Parking> list){
-		float color = BitmapDescriptorFactory.HUE_CYAN;
 
 		for(Parking item : list) {
 			parkingMarkers.add(
 					map.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.icon(BitmapDescriptorFactory.defaultMarker(item.getColor()))
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -93,12 +92,11 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	//Personal Methods
 	
 	public void renderPersonalItemMarkers(List<PersonalItem> list){
-		float color = BitmapDescriptorFactory.HUE_RED;
 
 		for(PersonalItem item : list) {
 			personalMarkers.add(
 					map.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.icon(BitmapDescriptorFactory.defaultMarker(item.getColor()))
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -127,12 +125,11 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	//Defibrillators Markers 
 	
 	public void renderDefibrillatorMarkers(List<Defibrillator> list){
-		float color = BitmapDescriptorFactory.HUE_RED;
 
 		for(Defibrillator item : list) {
 			defibrillatorMarkers.add(
 					map.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.icon(BitmapDescriptorFactory.defaultMarker(item.getColor()))
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -142,8 +139,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showDefibrillatorMarkers(){
 		if(defibrillatorMarkers.isEmpty()){
-			//businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
-			//.createFetchDefibrillatorsAsyncTask().execute();
+			businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
+			.createFetchDefibrillatorsAsyncTask().execute();
 		}
 		else{
 			for(Marker marker : defibrillatorMarkers){
@@ -161,12 +158,11 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	//Nests Methods 
 	
 	public void renderNestMarkers(List<Nest> list){
-		float color = BitmapDescriptorFactory.HUE_GREEN;
 
 		for(Nest item : list) {
 			nestMarkers.add(
 					map.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.icon(BitmapDescriptorFactory.defaultMarker(item.getColor()))
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -195,12 +191,11 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	//Toilets Methods 
 	
 	public void renderToiletMarkers(List<Toilet> list){
-		float color = BitmapDescriptorFactory.HUE_YELLOW;
 
 		for(Toilet item : list) {
 			toiletMarkers.add(
 					map.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(color))
+					.icon(BitmapDescriptorFactory.defaultMarker(item.getColor()))
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -209,7 +204,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	}
 
 	public void showToiletMarkers(){
-		if(defibrillatorMarkers.isEmpty()){
+		if(toiletMarkers.isEmpty()){
 			businessFactory.getToiletBusiness(context, (FetchToiletListener) context)
 			.createFetchToiletsAsyncTask().execute();
 		}

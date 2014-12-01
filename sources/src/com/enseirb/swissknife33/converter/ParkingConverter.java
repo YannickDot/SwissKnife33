@@ -45,8 +45,8 @@ public class ParkingConverter {
 		.setDomaniality(p.getDomaniality())
 		.setNature(p.getNature())
 		.setName(p.getName())
-		.setLongitude(Float.valueOf(p.getLongitude()))
-		.setLatitude(Float.valueOf(p.getLatitude()));
+		.setLongitude(Double.valueOf(p.getLongitude()))
+		.setLatitude(Double.valueOf(p.getLatitude()));
 
 		parking = setNumberOfSpaceIfPossible(p, parking);
 		

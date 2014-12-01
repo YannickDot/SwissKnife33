@@ -43,8 +43,8 @@ public class NestConverter {
 		.setShelter_type(n.getShelter_type())
 		.setTargeted_species(n.getTargeted_species())
 		.setName(n.getName())
-		.setLongitude(Float.valueOf(n.getLongitude()))
-		.setLatitude(Float.valueOf(n.getLatitude()));
+		.setLongitude(Double.valueOf(n.getLongitude()))
+		.setLatitude(Double.valueOf(n.getLatitude()));
 		
 		return nest;
 	}

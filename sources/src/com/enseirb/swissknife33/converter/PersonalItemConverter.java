@@ -58,8 +58,8 @@ public class PersonalItemConverter {
 		PersonalItem personalItem = new PersonalItem()
 		.setKey(Integer.valueOf(p.getKey()))
 		.setName(p.getName())
-		.setLongitude(Float.valueOf(p.getLongitude()))
-		.setLatitude(Float.valueOf(p.getLatitude()));
+		.setLongitude(Double.valueOf(p.getLongitude()))
+		.setLatitude(Double.valueOf(p.getLatitude()));
 		
 		return personalItem;
 	}

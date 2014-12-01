@@ -45,8 +45,8 @@ public class ToiletConverter {
 		.setName(t.getName())
 		.setNeighborhood(t.getNeighborhood())
 		.setTypology(t.getTypology())
-		.setLongitude(Float.valueOf(t.getLongitude()))
-		.setLatitude(Float.valueOf(t.getLatitude()));
+		.setLongitude(Double.valueOf(t.getLongitude()))
+		.setLatitude(Double.valueOf(t.getLatitude()));
 		
 		return toilet;
 	}

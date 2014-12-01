@@ -1,5 +1,7 @@
 package com.enseirb.swissknife33.business.model;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 public class Parking {
 	
 	private int key;
@@ -7,8 +9,9 @@ public class Parking {
 	private String nature;
     private String name;
     private int numberOfSpace;
-    private float longitude;
-    private float latitude;
+    private double longitude;
+    private double latitude;
+    private float color = BitmapDescriptorFactory.HUE_CYAN;
     
 	public int getKey() {
 		return key;
@@ -45,17 +48,17 @@ public class Parking {
 		this.numberOfSpace = numberOfSpace;
 		return this;
 	}
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public Parking setLongitude(float longitude) {
+	public Parking setLongitude(double longitude) {
 		this.longitude = longitude;
 		return this;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public Parking setLatitude(float latitude) {
+	public Parking setLatitude(double latitude) {
 		this.latitude = latitude;
 		return this;
 	}
@@ -71,5 +74,11 @@ public class Parking {
 						numberOfSpace,
 						longitude,
 						latitude);
+	}
+	public float getColor() {
+		return color;
+	}
+	public void setColor(float color) {
+		this.color = color;
 	}  
 }

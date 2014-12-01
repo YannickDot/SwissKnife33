@@ -1,13 +1,16 @@
 package com.enseirb.swissknife33.business.model;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 public class Nest {
 	
 	private int key;
 	private String shelter_type;
 	private String targeted_species;
 	private String name;
-	private float longitude;
-	private float latitude;
+	private double longitude;
+	private double latitude;
+	private float color = BitmapDescriptorFactory.HUE_GREEN;
 	
 	public int getKey() {
 		return key;
@@ -37,18 +40,24 @@ public class Nest {
 		this.name = name;
 		return this;
 	}
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public Nest setLongitude(float longitude) {
+	public Nest setLongitude(double longitude) {
 		this.longitude = longitude;
 		return this;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public Nest setLatitude(float latitude) {
+	public Nest setLatitude(double latitude) {
 		this.latitude = latitude;
 		return this;
+	}
+	public float getColor() {
+		return color;
+	}
+	public void setColor(float color) {
+		this.color = color;
 	}
 }
