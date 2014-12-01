@@ -11,12 +11,13 @@ import android.content.Context;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
+import com.google.android.gms.maps.model.Marker;
 
 public class PersonalItemDAO {
 	
-	private static final String LATITUDE = "Latitude";
-	private static final String LONGITUDE = "Longitude";
-	private static final String NAME = "Name";
+	private static final String LATITUDE = "y_lat";
+	private static final String LONGITUDE = "x_long";
+	private static final String NAME = "name";
 	private static final String KEY = "key";
 	
 	private final Context context;
@@ -35,19 +36,37 @@ public class PersonalItemDAO {
 		JSONArray jsonDataArray = new JSONArray();
 		
 		String savedItems = storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM);
+		Log.i("personalitem debug", savedItems);
 		jsonDataArray = new JSONArray(savedItems);
 		
-		List<PersonalItemDTO> list = parser.parse(jsonDataArray);
-		
+		List<PersonalItemDTO> list = new ArrayList<PersonalItemDTO>();
+		list = parser.parse(jsonDataArray);
 		return list;
 		
 	}
 	
 	public int save(List<PersonalItemDTO> list) throws JSONException{
-		String jsonString = toJSONText(list);
+		JSONArray old_values = fromJSONText(storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM));
 		
-		storage.setString(PERSISTENCE_KEY_PERSONAL_ITEM, jsonString);
+		for (PersonalItemDTO p : list){
+			JSONObject personalItemDTO_JSON = new JSONObject();
+			personalItemDTO_JSON
+			.put(KEY, p.getKey())
+			.put(NAME, p.getName())
+			.put(LONGITUDE, p.getLongitude())
+			.put(LATITUDE, p.getLatitude());
+			
+			old_values.put(personalItemDTO_JSON);
+		}
+		
+		//clear();
+		
+		storage.setString(PERSISTENCE_KEY_PERSONAL_ITEM, old_values.toString());
 		return 0;
+	}
+	
+	public void clear() {
+		storage.remove(PERSISTENCE_KEY_PERSONAL_ITEM);
 	}
 	
 	private String toJSONText(List<PersonalItemDTO> list) throws JSONException{
@@ -65,6 +84,12 @@ public class PersonalItemDAO {
 		}
 			
 		return personalItemDTO_JSONArray.toString();
+	}
+	
+	private JSONArray fromJSONText(String jsonArrayText) throws JSONException{
+		JSONArray jsonArray = new JSONArray(jsonArrayText);
+		
+		return jsonArray;
 	}
 
 }

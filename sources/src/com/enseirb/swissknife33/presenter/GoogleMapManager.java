@@ -29,7 +29,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	private BusinessFactory businessFactory = new BusinessFactory();
 	private GoogleMap map;
-	private int zoomLevel = 13;
+	private int zoomLevel = 12;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
 	public Context context;
 	
@@ -106,8 +106,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showPersonalMarkers(){
 		if(personalMarkers.isEmpty()){
-			//businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
-			//.createFetchPersonalItemsAsyncTask().execute();
+			businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+			.createFetchPersonalItemsAsyncTask().execute();
 		}
 		else{
 			for(Marker marker : personalMarkers){
@@ -221,15 +221,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		}
 	}
 	
-	
-	/* 	
-	color = BitmapDescriptorFactory.HUE_CYAN;
-	color = BitmapDescriptorFactory.HUE_BLUE;
-	color = BitmapDescriptorFactory.HUE_RED;
-	color = BitmapDescriptorFactory.HUE_GREEN;
-	color = BitmapDescriptorFactory.HUE_YELLOW;
-	color = BitmapDescriptorFactory.HUE_VIOLET;
-	 */
+
 	
 	@Override
 	public void onMapLongClick(LatLng pos) {
@@ -245,18 +237,18 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		PersonalItem personalItem = new PersonalItem()
 		.setKey(0)
 		.setName(markerTitle)
-		.setLongitude((float) pos.longitude)
-		.setLatitude((float) pos.latitude);
+		.setLongitude(pos.longitude)
+		.setLatitude(pos.latitude);
 
 		showPersonalMarkers();
 		personalMarkers.add(map.addMarker(marker));
 		personalItemsList.add(personalItem);
 		
-
-		//context.activatePersonalMarkers(); ??
+		((MainActivity) context).activatePersonalMarkers();
+		
 		//save marker to storage
-		//businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
-		//.createSavePersonalItemsAsyncTask(personalItemsList).execute();
+		businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+		.createSavePersonalItemsAsyncTask(personalItemsList).execute();
 
 	}
 

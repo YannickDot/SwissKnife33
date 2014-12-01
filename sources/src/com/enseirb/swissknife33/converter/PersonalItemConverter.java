@@ -1,11 +1,13 @@
 package com.enseirb.swissknife33.converter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.json.JSONException;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.dao.DAOFactory;
@@ -22,7 +24,7 @@ public class PersonalItemConverter {
 
 	public List<PersonalItem> fetch() throws Swissknife33Exception {
 
-		List<PersonalItemDTO> personalItemsDTO = null;
+		List<PersonalItemDTO> personalItemsDTO = new ArrayList<PersonalItemDTO>();
 		List<PersonalItem> personalItems = new LinkedList<PersonalItem>();
 
 		try {

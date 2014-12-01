@@ -166,7 +166,7 @@ FetchDefibrillatorListener {
 	}
 	
 	public void activatePersonalMarkers(){
-		personalBox.setActivated(true);
+		personalBox.setChecked(true);
 	}
 	
 	
@@ -225,10 +225,7 @@ FetchDefibrillatorListener {
 	}
 	
 	private void updatePersonalItems(List<PersonalItem> personalItems) {
-		System.out.println(personalItems.size() + " personalItems fetched !");
-		for (PersonalItem p : personalItems) {
-			System.out.println(p.toString());
-		}
+		googleMapManager.renderPersonalItemMarkers(personalItems);
 	}
 	
 	

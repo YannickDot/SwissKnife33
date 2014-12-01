@@ -25,4 +25,10 @@ public class Storage {
 		String savedItems = sharedPrefs.getString(key, DEFAULT_DATA);
 		return savedItems;
 	}
+	
+	public void remove(String key){
+		SharedPreferences.Editor editor = sharedPrefs.edit();
+		editor.remove(key);
+		editor.commit();
+	}
 }
