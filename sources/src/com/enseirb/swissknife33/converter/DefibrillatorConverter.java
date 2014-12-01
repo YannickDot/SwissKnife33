@@ -39,9 +39,6 @@ public class DefibrillatorConverter {
 	}
 
 	private Defibrillator toDefibrillator(DefibrillatorDTO d) {
-
-		//TODO: Invalid float exception to fix here ....
-		//Number is too large for float representation
 		
 		Defibrillator defibrillator = new Defibrillator()
 		.setKey(Integer.valueOf(d.getKey()))
@@ -53,8 +50,8 @@ public class DefibrillatorConverter {
 		.setTypology(d.getTypology())
 		.setInstalled(d.getInstalled())
 		.setInformation(d.getInformation())
-		.setLongitude(Double.valueOf(d.getLongitude()))
-		.setLatitude(Double.valueOf(d.getLatitude()));
+		.setLongitude(Double.valueOf(d.getLongitude().replace(",", ".")))
+		.setLatitude(Double.valueOf(d.getLatitude().replace(",", ".")));
 		
 		return defibrillator;
 	}

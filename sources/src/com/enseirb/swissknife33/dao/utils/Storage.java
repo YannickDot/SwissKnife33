@@ -1,4 +1,4 @@
-package com.enseirb.swissknife33.dao;
+package com.enseirb.swissknife33.dao.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -15,6 +15,7 @@ import android.util.Log;
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
+import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.parser.ParkingParser;
 

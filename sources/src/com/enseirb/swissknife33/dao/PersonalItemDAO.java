@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
+import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
 
 public class PersonalItemDAO {

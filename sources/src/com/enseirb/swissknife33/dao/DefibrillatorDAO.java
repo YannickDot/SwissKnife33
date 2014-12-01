@@ -12,6 +12,7 @@ import android.content.Context;
 
 import com.enseirb.swissknife33.dao.model.DefibrillatorDTO;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
+import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.parser.DefibrillatorParser;
 
