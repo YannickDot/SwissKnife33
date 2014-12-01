@@ -7,7 +7,7 @@ public class PersonalItem {
     private String name;
     private double longitude;
     private double latitude;
-    private float color = BitmapDescriptorFactory.HUE_RED;
+    private float color = BitmapDescriptorFactory.HUE_VIOLET;
     
 	public int getKey() {
 		return key;
