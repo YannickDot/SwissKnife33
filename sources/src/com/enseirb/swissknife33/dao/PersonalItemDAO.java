@@ -1,5 +1,6 @@
 package com.enseirb.swissknife33.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -7,10 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.parser.PersonalItemParser;

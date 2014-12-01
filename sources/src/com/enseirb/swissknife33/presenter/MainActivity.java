@@ -3,8 +3,12 @@ package com.enseirb.swissknife33.presenter;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -15,6 +19,7 @@ import com.enseirb.swissknife33.business.model.Nest;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.business.model.Toilet;
+import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
 import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
@@ -40,6 +45,7 @@ FetchDefibrillatorListener {
 	private CheckBox nestsBox;
 	private CheckBox defibrillatorsBox;
 	private CheckBox personalBox;
+	private Button clearButton;
 
 	private GoogleMapManager googleMapManager; 
 
@@ -59,6 +65,7 @@ FetchDefibrillatorListener {
 		nestsBox = (CheckBox) findViewById(R.id.nestsBox);
 		defibrillatorsBox = (CheckBox) findViewById(R.id.defibrillatorsBox);
 		personalBox = (CheckBox) findViewById(R.id.personalItemBox);
+		clearButton = (Button) findViewById(R.id.clearButton);
 		// Getting reference to map
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		googleMapManager = new GoogleMapManager(mapFragment, this);
@@ -305,5 +312,17 @@ FetchDefibrillatorListener {
 	
 	private void updateToilets(List<Toilet> toilets) {
 		googleMapManager.renderToiletMarkers(toilets);
+	}
+	
+	private void clearButtonJob(){
+		final Context that = this;
+		clearButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Storage st = new Storage(that));
+				st.rem
+			}
+		});
 	}
 }

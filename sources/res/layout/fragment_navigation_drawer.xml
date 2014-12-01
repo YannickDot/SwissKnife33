@@ -40,5 +40,12 @@
         android:layout_height="wrap_content"
         android:text="@string/title_personalItem"
         android:textColor="@color/personalMarkersColor" />
+    
+    <Button 
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Clear all personnal items"/>
 
 </LinearLayout>
