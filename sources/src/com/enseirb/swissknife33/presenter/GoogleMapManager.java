@@ -56,7 +56,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		this.vibration = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 		map.setOnMapLongClickListener((OnMapLongClickListener) this);
 		map.setMyLocationEnabled(true);
-		centerMapOnMyLocation();
+		//centerMapOnMyLocation();
 	}
 
 	private void initMap() {
