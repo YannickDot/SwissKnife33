@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.os.Vibrator;
 
 import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Defibrillator;
@@ -32,6 +33,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	private int zoomLevel = 12;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
 	public Context context;
+	private Vibrator vibration;
+	private int VIBRATION_DURATION = 25;
 	
 	public ArrayList<Marker> parkingMarkers = new ArrayList<Marker>();
 	public ArrayList<Marker> nestMarkers = new ArrayList<Marker>();
@@ -45,7 +48,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		this.map = mapFragment.getMap();
 		this.context = context;
 		initMap();
-
+		
+		this.vibration = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 		map.setOnMapLongClickListener((OnMapLongClickListener) this); 
 	}
 
@@ -243,6 +247,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		showPersonalMarkers();
 		personalMarkers.add(map.addMarker(marker));
 		personalItemsList.add(personalItem);
+		
+		vibration.vibrate(VIBRATION_DURATION);
 		
 		((MainActivity) context).activatePersonalMarkers();
 		
