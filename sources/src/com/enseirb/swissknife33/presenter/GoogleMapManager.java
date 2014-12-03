@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.Vibrator;
+import android.provider.SyncStateContract.Constants;
 
 import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Defibrillator;
@@ -33,6 +35,8 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	private int zoomLevel = 12;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
 	public Context context;
+	private Location locationService;
+	private LatLng myLocation;
 	private Vibrator vibration;
 	private int VIBRATION_DURATION = 25;
 	
@@ -50,13 +54,34 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		initMap();
 		
 		this.vibration = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-		map.setOnMapLongClickListener((OnMapLongClickListener) this); 
+		map.setOnMapLongClickListener((OnMapLongClickListener) this);
+		map.setMyLocationEnabled(true);
+		centerMapOnMyLocation();
 	}
 
 	private void initMap() {
 		map.setMyLocationEnabled(true);
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(centreBordeaux,
 				zoomLevel));
+	}
+	
+	private void centerMapOnMyLocation() {
+
+	    map.setMyLocationEnabled(true);
+
+	    locationService = map.getMyLocation();
+
+	    if (locationService != null) {
+	        myLocation = new LatLng(locationService.getLatitude(),
+	                locationService.getLongitude());
+	        map.addMarker(new MarkerOptions()
+			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+			.anchor(0.0f, 1.0f)
+			.title("MyPos")
+			.position(myLocation));
+		    map.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation,16));
+	    }
+	    
 	}
 
 	
