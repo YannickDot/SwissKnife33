@@ -8,10 +8,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
-import com.google.android.gms.maps.model.Marker;
 
 public class PersonalItemDAO {
 	

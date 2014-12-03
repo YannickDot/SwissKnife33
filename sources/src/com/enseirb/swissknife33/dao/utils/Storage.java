@@ -7,7 +7,7 @@ public class Storage {
 	private Context context = null;
 	private SharedPreferences sharedPrefs = null;
 	
-	private String APP_SHARED_PREFS = "com.enseirb.swissknife33";
+	public static String APP_SHARED_PREFS = "com.enseirb.swissknife33";
 	private String DEFAULT_DATA = "";
 	
 	public Storage(Context context){

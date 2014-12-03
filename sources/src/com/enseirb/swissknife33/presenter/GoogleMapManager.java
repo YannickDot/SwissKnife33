@@ -27,7 +27,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GoogleMapManager implements OnMapLongClickListener {
 
-	private BusinessFactory businessFactory = new BusinessFactory();
 	private GoogleMap map;
 	private int zoomLevel = 12;
 	private LatLng centreBordeaux = new LatLng(44.842409, -0.574470);
@@ -73,7 +72,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showParkingMarkers(){
 		if(parkingMarkers.isEmpty()){
-			businessFactory.getParkingBusiness(context, (FetchParkingListener) context)
+			MainActivity.businessFactory.getParkingBusiness(context, (FetchParkingListener) context)
 			.createFetchParkingsAsyncTask().execute();
 		}
 		else{
@@ -106,7 +105,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showPersonalMarkers(){
 		if(personalMarkers.isEmpty()){
-			businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+			MainActivity.businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
 			.createFetchPersonalItemsAsyncTask().execute();
 		}
 		else{
@@ -139,7 +138,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showDefibrillatorMarkers(){
 		if(defibrillatorMarkers.isEmpty()){
-			businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
+			MainActivity.businessFactory.getDefibrillatorBusiness(context, (FetchDefibrillatorListener) context)
 			.createFetchDefibrillatorsAsyncTask().execute();
 		}
 		else{
@@ -172,7 +171,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showNestMarkers(){
 		if(nestMarkers.isEmpty()){
-			businessFactory.getNestBusiness(context, (FetchNestListener) context)
+			MainActivity.businessFactory.getNestBusiness(context, (FetchNestListener) context)
 			.createFetchNestsAsyncTask().execute();
 		}
 		else{
@@ -205,7 +204,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 
 	public void showToiletMarkers(){
 		if(toiletMarkers.isEmpty()){
-			businessFactory.getToiletBusiness(context, (FetchToiletListener) context)
+			MainActivity.businessFactory.getToiletBusiness(context, (FetchToiletListener) context)
 			.createFetchToiletsAsyncTask().execute();
 		}
 		else{
@@ -247,9 +246,16 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		((MainActivity) context).activatePersonalMarkers();
 		
 		//save marker to storage
-		businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
+		MainActivity.businessFactory.getPersonalItemBusiness(context, (FetchPersonalItemListener) context)
 		.createSavePersonalItemsAsyncTask(personalItemsList).execute();
 
+	}
+
+	public void removePersonnalItem() {
+		for(Marker m : personalMarkers){
+			m.setVisible(false);
+		}
+		personalMarkers.clear();
 	}
 
 }
