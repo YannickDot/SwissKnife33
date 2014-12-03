@@ -13,6 +13,10 @@ public class Storage {
 	public Storage(Context context){
 		this.context = context;
 		sharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
+//		SharedPreferences.Editor editor = sharedPrefs.edit();
+//		editor.clear();
+//		editor.commit();
+		
 	}
 	
 	public void setString(String key, String value){
