@@ -28,6 +28,7 @@ public class PersonalItemDAO {
     private final PersonalItemParser parser;
 	
 	private String PERSISTENCE_KEY_PERSONAL_ITEM = "PERSONAL_ITEM_DATA";
+	private String EMPTY_JSONARRAY_STR = "[]";
 	private Storage storage;
 	
 	public PersonalItemDAO(PersonalItemParser parser, Context context) {
@@ -50,7 +51,14 @@ public class PersonalItemDAO {
 	}
 	
 	public int save(List<PersonalItemDTO> list) throws JSONException{
-		JSONArray old_values = fromJSONText(storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM));
+		
+		String old_values_str = storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM);
+		JSONArray old_values = new JSONArray();
+		if(old_values_str.isEmpty()){
+			old_values = fromJSONText(EMPTY_JSONARRAY_STR);
+		} else {
+			old_values = fromJSONText(old_values_str);
+		}
 		
 		for (PersonalItemDTO p : list){
 			JSONObject personalItemDTO_JSON = new JSONObject();
@@ -63,7 +71,6 @@ public class PersonalItemDAO {
 			old_values.put(personalItemDTO_JSON);
 		}
 		
-		//clear();
 		
 		storage.setString(PERSISTENCE_KEY_PERSONAL_ITEM, old_values.toString());
 		return 0;
