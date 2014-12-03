@@ -6,9 +6,6 @@ import java.util.List;
 import android.content.Context;
 import android.location.Location;
 import android.os.Vibrator;
-import android.provider.SyncStateContract.Constants;
-
-import com.enseirb.swissknife33.business.BusinessFactory;
 import com.enseirb.swissknife33.business.model.Defibrillator;
 import com.enseirb.swissknife33.business.model.Nest;
 import com.enseirb.swissknife33.business.model.Parking;
@@ -204,7 +201,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 			.createFetchNestsAsyncTask().execute();
 		}
 		else{
-			for(Marker marker : defibrillatorMarkers){
+			for(Marker marker : nestMarkers){
 				marker.setVisible(true);
 			}
 		}
@@ -272,7 +269,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		personalMarkers.add(map.addMarker(marker));
 		personalItemsList.add(personalItem);
 		
-		vibration.vibrate(VIBRATION_DURATION);
+		//vibration.vibrate(VIBRATION_DURATION);
 		
 		((MainActivity) context).activatePersonalMarkers();
 		

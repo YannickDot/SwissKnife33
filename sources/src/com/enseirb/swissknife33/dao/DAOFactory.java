@@ -2,11 +2,14 @@ package com.enseirb.swissknife33.dao;
 
 import android.content.Context;
 
+import com.enseirb.swissknife33.business.model.CheckBoxState;
+import com.enseirb.swissknife33.parser.CheckBoxStateParser;
 import com.enseirb.swissknife33.parser.DefibrillatorParser;
 import com.enseirb.swissknife33.parser.NestParser;
 import com.enseirb.swissknife33.parser.ParkingParser;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
 import com.enseirb.swissknife33.parser.ToiletParser;
+import com.enseirb.swissknife33.presenter.ui.FetchCheckBoxStateListener;
 
 public class DAOFactory {
 
@@ -16,35 +19,41 @@ public class DAOFactory {
 	private static final String DEFIBRILATOR_URL = "defibrillateurs";
 	private static final String NEST_URL = "abrisfaune";
 	private static final String TOILET_URL = "sigsanitaire";
-	
+
 
 	public ParkingDAO getParkingDAO(Context context) {
 		ParkingDAO dao = new ParkingDAO(WEBSERVICE_URL_PREFIX + PARKING_URL + FORMAT_JSON,
-										new ParkingParser(), context);
+				new ParkingParser(), context);
 		return dao;
 	}
-	
+
 	public PersonalItemDAO getPersonalItemDAO(Context context) {
 		PersonalItemDAO dao = new PersonalItemDAO(new PersonalItemParser(), 
-													context);
+				context);
 		return dao;
 	}
-	
+
 	public DefibrillatorDAO getDefibrillatorDAO(Context context) {
 		DefibrillatorDAO dao = new DefibrillatorDAO(WEBSERVICE_URL_PREFIX + DEFIBRILATOR_URL + FORMAT_JSON, 
-										new DefibrillatorParser(), context);
+				new DefibrillatorParser(), context);
 		return dao;
 	}
-	
+
 	public NestDAO getNestDAO(Context context) {
 		NestDAO dao = new NestDAO(WEBSERVICE_URL_PREFIX + NEST_URL + FORMAT_JSON, 
-										new NestParser(), context);
+				new NestParser(), context);
 		return dao;
 	}
-	
+
 	public ToiletDAO getToiletDAO(Context context) {
 		ToiletDAO dao = new ToiletDAO(WEBSERVICE_URL_PREFIX + TOILET_URL + FORMAT_JSON, 
-										new ToiletParser(), context);
+				new ToiletParser(), context);
+		return dao;
+	}
+
+	public CheckBoxStateDAO getCheckBoxStateDAO(Context context) {
+		CheckBoxStateDAO dao = new CheckBoxStateDAO(new CheckBoxStateParser(), 
+				context);
 		return dao;
 	}
 }

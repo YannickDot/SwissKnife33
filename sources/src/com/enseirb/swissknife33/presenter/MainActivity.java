@@ -1,5 +1,6 @@
 package com.enseirb.swissknife33.presenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,12 +15,15 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.enseirb.swissknife33.R;
+import com.enseirb.swissknife33.business.BusinessFactory;
+import com.enseirb.swissknife33.business.model.CheckBoxState;
 import com.enseirb.swissknife33.business.model.Defibrillator;
 import com.enseirb.swissknife33.business.model.Nest;
 import com.enseirb.swissknife33.business.model.Parking;
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.business.model.Toilet;
 import com.enseirb.swissknife33.dao.utils.Storage;
+import com.enseirb.swissknife33.presenter.ui.FetchCheckBoxStateListener;
 import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
 import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
@@ -33,10 +37,22 @@ FetchParkingListener,
 FetchPersonalItemListener,
 FetchToiletListener,
 FetchNestListener, 
-FetchDefibrillatorListener {
-//,
-//FetchNestListener,
-// ... 
+FetchDefibrillatorListener,
+FetchCheckBoxStateListener{
+	private static final String PERSONAL_ITEMS = "personalItems";
+
+	private static final String DEFIBRILLATORS = "defibrillators";
+
+	private static final String NESTS = "nests";
+
+	private static final String PARKINGS = "parkings";
+
+	private static final String TOILETS = "toilets";
+
+	//,
+	//FetchNestListener,
+	// ... 
+	public static BusinessFactory businessFactory = new BusinessFactory();
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -47,6 +63,8 @@ FetchDefibrillatorListener {
 	private CheckBox personalBox;
 	private Button clearButton;
 
+	private List<CheckBoxState> checkBoxStateList = new ArrayList<CheckBoxState>();
+	
 	private GoogleMapManager googleMapManager; 
 
 	@Override
@@ -69,18 +87,17 @@ FetchDefibrillatorListener {
 		// Getting reference to map
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		googleMapManager = new GoogleMapManager(mapFragment, this);
-
+		
 		checkBoxJob();
-
-		// Getting Parking data. See bottom of the code to tell how to process it
-
+		clearButtonJob();
+		updateCheckBoxState();
 	}
 	
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 
 	}
-
+	
 	public void checkBoxJob(){
 		toiletsBoxJob();
 		parkingsBoxJob();
@@ -88,12 +105,13 @@ FetchDefibrillatorListener {
 		defibrillatorsBoxJob();
 		personalBoxJob();
 	}
-	
+
 	private void toiletsBoxJob() {
 		toiletsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+				saveCheckBoxStates();
 				if(toiletsBox.isChecked()){
 					googleMapManager.showToiletMarkers();
 				}
@@ -109,6 +127,7 @@ FetchDefibrillatorListener {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveCheckBoxStates();
 				if(parkingsBox.isChecked()){
 					googleMapManager.showParkingMarkers();
 				}
@@ -119,12 +138,13 @@ FetchDefibrillatorListener {
 			}
 		});
 	}
-	
+
 	private void nestsBoxJob() {
 		nestsBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveCheckBoxStates();
 				if(nestsBox.isChecked()){
 					googleMapManager.showNestMarkers();
 				}
@@ -140,6 +160,7 @@ FetchDefibrillatorListener {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveCheckBoxStates();
 				if(defibrillatorsBox.isChecked()){
 					googleMapManager.showDefibrillatorMarkers();
 				}
@@ -149,12 +170,13 @@ FetchDefibrillatorListener {
 			}
 		});		
 	}
-	
+
 	private void personalBoxJob() {
 		personalBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveCheckBoxStates();
 				if(personalBox.isChecked()){
 					googleMapManager.showPersonalMarkers();
 				}
@@ -164,15 +186,59 @@ FetchDefibrillatorListener {
 			}
 		});		
 	}
+
+	public void saveCheckBoxStates(){
+		initCheckBoxStateList();
+		businessFactory.getCheckBoxStateBusiness(this, (FetchCheckBoxStateListener) this)
+		.createSaveCheckBoxStatesAsyncTask(checkBoxStateList).execute();
+	}
+	
+	private void initCheckBoxStateList(){
+		CheckBoxState toiletsBoxState = new CheckBoxState().setName(TOILETS)
+				.setState(toiletsBox.isChecked());
+		CheckBoxState parkingsBoxState = new CheckBoxState().setName(PARKINGS)
+				.setState(parkingsBox.isChecked());
+		CheckBoxState nestsBoxState = new CheckBoxState().setName(NESTS)
+				.setState(nestsBox.isChecked());
+		CheckBoxState defibrillatorsBoxState = new CheckBoxState().setName(DEFIBRILLATORS)
+				.setState(defibrillatorsBox.isChecked());
+		CheckBoxState personalItemsBoxState = new CheckBoxState().setName(PERSONAL_ITEMS)
+				.setState(personalBox.isChecked());
+		checkBoxStateList.clear();
+		checkBoxStateList.add(toiletsBoxState);
+		checkBoxStateList.add(parkingsBoxState);
+		checkBoxStateList.add(nestsBoxState);
+		checkBoxStateList.add(defibrillatorsBoxState);
+		checkBoxStateList.add(personalItemsBoxState);
+	}
+	
+	private void clearButtonJob(){
+		final Context that = this;
+		clearButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Storage st = new Storage(that);
+				st.remove(Storage.APP_SHARED_PREFS);
+				googleMapManager.removePersonnalItem();
+			}
+		});
+	}
+	
+	
+	private void updateCheckBoxState(){
+		businessFactory.getCheckBoxStateBusiness(this, this)
+		.createFetchCheckBoxStatesAsyncTask().execute();
+	}
+	
+	
 	
 	public void activatePersonalMarkers(){
 		personalBox.setChecked(true);
 	}
 	
-	
-	
 	//Parkings methods 
-	
+
 	@Override
 	public void onFetchParkingsSuccess(List<Parking> parkings) {
 		//TODO Display parkings data
@@ -184,13 +250,13 @@ FetchDefibrillatorListener {
 		//TODO Display error
 		System.out.println("An error occured while fetching parkings.");
 	}
-	
+
 	@Override
 	public void onWaitForParkings() {
 		//TODO Display wait message
 		System.out.println("Fetching parkings.");
 	}
-	
+
 	//TODO display parkings data
 	private void updateParkings(List<Parking> parkings) {
 		System.out.println(parkings.size() + " parkings fetched !");
@@ -199,36 +265,36 @@ FetchDefibrillatorListener {
 		}
 		googleMapManager.renderParkingMarkers(parkings);
 	}
-	
-	
+
+
 	//PersonalItems Methods
 
 	@Override
 	public void onWaitForPersonalItems() {
 		// TODO Auto-generated method stub
 		System.out.println("Fetching personalItems.");
-		
+
 	}
 
 	@Override
 	public void onFetchPersonalItemsSuccess(List<PersonalItem> personalItems) {
 		// TODO Auto-generated method stub
 		updatePersonalItems(personalItems);
-		
+
 	}
 
 	@Override
 	public void onFetchPersonalItemsError() {
 		// TODO Auto-generated method stub
 		System.out.println("An error occured while fetching personalItems.");
-		
+
 	}
-	
+
 	private void updatePersonalItems(List<PersonalItem> personalItems) {
 		googleMapManager.renderPersonalItemMarkers(personalItems);
 	}
-	
-	
+
+
 	//Defibrillators Methods
 
 	@Override
@@ -247,22 +313,20 @@ FetchDefibrillatorListener {
 	public void onFetchDefibrillatorsError() {
 		// TODO Auto-generated method stub
 		System.out.println("An error occured while fetching defibrillators.");
-		
+
 	}
-	
+
 	private void updateDefibrillators(List<Defibrillator> defibrillators) {
 		googleMapManager.renderDefibrillatorMarkers(defibrillators);
 	}
-	
-	
-	
+
 	//Nests Methods 
 
 	@Override
 	public void onWaitForNests() {
 		// TODO Auto-generated method stub
 		System.out.println("Fetching nests.");
-		
+
 	}
 
 	@Override
@@ -275,51 +339,81 @@ FetchDefibrillatorListener {
 	public void onFetchNestsError() {
 		// TODO Auto-generated method stub
 		System.out.println("An error occured while fetching nests.");
-		
+
 	}
-	
+
 	private void updateNests(List<Nest> nests) {
 		googleMapManager.renderNestMarkers(nests);
 	}
-	
-	
-	
+
+
+
 	//Toilets Methods
 
 	@Override
 	public void onWaitForToilets() {
 		// TODO Auto-generated method stub
 		System.out.println("Fetching toilets.");
-		
+
 	}
-	
+
 	@Override
 	public void onFetchToiletsSuccess(List<Toilet> toilets) {
 		// TODO Auto-generated method stub
 		updateToilets(toilets);
-		
+
 	}
 
 	@Override
 	public void onFetchToiletsError() {
 		// TODO Auto-generated method stub
 		System.out.println("An error occured while fetching toilets.");
-		
+
 	}
-	
+
 	private void updateToilets(List<Toilet> toilets) {
 		googleMapManager.renderToiletMarkers(toilets);
 	}
-	
-	private void clearButtonJob(){
-		final Context that = this;
-		clearButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Storage st = new Storage(that));
-				st.rem
+
+
+
+	@Override
+	public void onWaitForCheckBoxStates() {
+		// TODO Auto-generated method stub
+		System.out.println("Fetching checkboxes states.");
+	}
+
+	@Override
+	public void onFetchCheckBoxStatesSuccess(List<CheckBoxState> data) {
+		// TODO Auto-generated method stub
+		setCheckBoxState(data);
+	}
+
+	private void setCheckBoxState(List<CheckBoxState> data) {
+		// TODO Auto-generated method stub
+		for (CheckBoxState cbs : data){
+			if(TOILETS.equals(cbs.getName())){
+				toiletsBox.setChecked(cbs.getState());
 			}
-		});
+			else if(PARKINGS.equals(cbs.getName())){
+				parkingsBox.setChecked(cbs.getState());
+			}
+			else if(NESTS.equals(cbs.getName())){
+				nestsBox.setChecked(cbs.getState());
+			}
+			else if(DEFIBRILLATORS.equals(cbs.getName())){
+				defibrillatorsBox.setChecked(cbs.getState());
+			}
+			else if(PERSONAL_ITEMS.equals(cbs.getName())){
+				personalBox.setChecked(cbs.getState());
+			}
+		}
+	}
+
+	@Override
+	public void onFetchCheckBoxStatesError() {
+		// TODO Auto-generated method stub
+		System.out.println("An error occured while fetching checkboxes states.");
+
 	}
 }

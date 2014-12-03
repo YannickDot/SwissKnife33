@@ -23,5 +23,9 @@ public class ConverterFactory {
 	public DefibrillatorConverter getDefibrillatorConverter(Context context) {
 		return new DefibrillatorConverter(context);
 	}
+
+	public CheckBoxStateConverter getCheckBoxStateConverter(Context context) {
+		return new CheckBoxStateConverter(context);
+	}
 	
 }
