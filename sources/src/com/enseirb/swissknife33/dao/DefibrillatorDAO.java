@@ -2,6 +2,7 @@ package com.enseirb.swissknife33.dao;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -11,6 +12,8 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.enseirb.swissknife33.dao.model.DefibrillatorDTO;
+import com.enseirb.swissknife33.dao.model.NestDTO;
+import com.enseirb.swissknife33.dao.utils.Connectivity;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
@@ -24,16 +27,20 @@ public class DefibrillatorDAO extends AbstractDAO<DefibrillatorDTO> {
 		this.URL = url;
 		this.parser = parser;
 		this.storage = new Storage(context);
+		this.connectivity = new Connectivity(context);
 	}
 	
 	public List<DefibrillatorDTO> fetch() throws JSONException, Swissknife33Exception {
 		
-		//TODO : Here I tried to make the application offline first and check 
-		// if data is cached before fetching it from the web.
+		List<DefibrillatorDTO> list = new ArrayList<DefibrillatorDTO>();
 		
-		List<DefibrillatorDTO> list = fetchFromURL();
+		if(connectivity.isOnline()){
+			list = fetchFromURL();
+		} else {
+			list = fetchFromCache();
+		}
+		
 		return list;
-
 	}
 	
 	public List<DefibrillatorDTO> fetchFromCache() throws JSONException, Swissknife33Exception {
@@ -41,7 +48,6 @@ public class DefibrillatorDAO extends AbstractDAO<DefibrillatorDTO> {
 		System.out.println("Fetching defibrillatorsDTO from cache.");
 		
 		String savedItems = storage.getString(PERSISTENCE_KEY_DEFIBRILATORS);
-		System.out.println(savedItems);
 		jsonDataArray = new JSONArray(savedItems);
 		
 		List<DefibrillatorDTO> list = parser.parse(jsonDataArray);

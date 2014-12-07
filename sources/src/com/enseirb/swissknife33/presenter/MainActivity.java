@@ -260,9 +260,6 @@ FetchCheckBoxStateListener{
 	//TODO display parkings data
 	private void updateParkings(List<Parking> parkings) {
 		System.out.println(parkings.size() + " parkings fetched !");
-		for (Parking p : parkings) {
-			System.out.println(p.toString());
-		}
 		googleMapManager.renderParkingMarkers(parkings);
 	}
 

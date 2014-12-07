@@ -2,6 +2,7 @@ package com.enseirb.swissknife33.dao;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -14,6 +15,7 @@ import android.util.Log;
 
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
+import com.enseirb.swissknife33.dao.utils.Connectivity;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
@@ -27,24 +29,20 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		this.URL = url;
 		this.parser = parser;
 		this.storage = new Storage(context);
+		this.connectivity = new Connectivity(context);
 	}
 	
 	public List<ParkingDTO> fetch() throws JSONException, Swissknife33Exception {
-//		List<ParkingDTO> list = fetchFromURL();
-//		return list;
+
+		List<ParkingDTO> list = new ArrayList<ParkingDTO>();
 		
-		//TODO : Here I tried to make the application offline first and check 
-		// if data is cached before fetching it from the web.
+		if(connectivity.isOnline()){
+			list = fetchFromURL();
+		} else {
+			list = fetchFromCache();
+		}
 		
-		List<ParkingDTO> list = fetchFromURL();
 		return list;
-//		if (list.isEmpty()) {
-//			List<ParkingDTO> list2 = fetchFromURL();
-//			
-//			return list2;
-//		} else {
-//			return list;
-//		}
 
 	}
 	
@@ -53,7 +51,6 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		System.out.println("Fetching parkingsDTO from cache.");
 		
 		String savedItems = storage.getString(PERSISTENCE_KEY_PARKINGS);
-		System.out.println(savedItems);
 		jsonDataArray = new JSONArray(savedItems);
 		
 		List<ParkingDTO> list = parser.parse(jsonDataArray);

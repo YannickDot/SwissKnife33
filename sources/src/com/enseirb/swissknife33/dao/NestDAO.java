@@ -2,6 +2,7 @@ package com.enseirb.swissknife33.dao;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -11,6 +12,7 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.enseirb.swissknife33.dao.model.NestDTO;
+import com.enseirb.swissknife33.dao.utils.Connectivity;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
 import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
@@ -24,14 +26,19 @@ public class NestDAO extends AbstractDAO<NestDTO> {
 		this.URL = url;
 		this.parser = parser;
 		this.storage = new Storage(context);
+		this.connectivity = new Connectivity(context);
 	}
 	
 	public List<NestDTO> fetch() throws JSONException, Swissknife33Exception {
 		
-		//TODO : Here I tried to make the application offline first and check 
-		// if data is cached before fetching it from the web.
+		List<NestDTO> list = new ArrayList<NestDTO>();
 		
-		List<NestDTO> list = fetchFromURL();
+		if(connectivity.isOnline()){
+			list = fetchFromURL();
+		} else {
+			list = fetchFromCache();
+		}
+		
 		return list;
 
 	}
@@ -41,7 +48,6 @@ public class NestDAO extends AbstractDAO<NestDTO> {
 		System.out.println("Fetching nestsDTO from cache.");
 		
 		String savedItems = storage.getString(PERSISTENCE_KEY_NESTS);
-		System.out.println(savedItems);
 		jsonDataArray = new JSONArray(savedItems);
 		
 		List<NestDTO> list = parser.parse(jsonDataArray);
