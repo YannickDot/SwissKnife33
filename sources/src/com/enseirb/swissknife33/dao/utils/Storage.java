@@ -8,6 +8,7 @@ public class Storage {
 	private SharedPreferences sharedPrefs = null;
 	
 	public static String APP_SHARED_PREFS = "com.enseirb.swissknife33";
+	public static String PERSISTENCE_KEY_PERSONAL_ITEM = "PERSONAL_ITEM_DATA";
 	private String DEFAULT_DATA = "";
 	
 	public Storage(Context context){

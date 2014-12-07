@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
 
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.business.BusinessFactory;
@@ -39,6 +40,8 @@ FetchToiletListener,
 FetchNestListener, 
 FetchDefibrillatorListener,
 FetchCheckBoxStateListener{
+	private static final String PERSONAL_ITEMS_DELETED_STR = "Personal Items deleted.";
+
 	private static final String PERSONAL_ITEMS = "personalItems";
 
 	private static final String DEFIBRILLATORS = "defibrillators";
@@ -219,8 +222,15 @@ FetchCheckBoxStateListener{
 			@Override
 			public void onClick(View v) {
 				Storage st = new Storage(that);
-				st.remove(Storage.APP_SHARED_PREFS);
+				st.remove(Storage.PERSISTENCE_KEY_PERSONAL_ITEM);
 				googleMapManager.removePersonnalItem();
+				
+				Context context = getApplicationContext();
+				String toastText = PERSONAL_ITEMS_DELETED_STR;
+				int duration = Toast.LENGTH_SHORT;
+
+				Toast toast = Toast.makeText(context, toastText, duration);
+				toast.show();
 			}
 		});
 	}
