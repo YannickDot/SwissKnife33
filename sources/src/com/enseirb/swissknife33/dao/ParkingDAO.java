@@ -11,10 +11,7 @@ import org.json.JSONObject;
 
 
 import android.content.Context;
-import android.util.Log;
-
 import com.enseirb.swissknife33.dao.model.ParkingDTO;
-import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.Connectivity;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
 import com.enseirb.swissknife33.dao.utils.Storage;

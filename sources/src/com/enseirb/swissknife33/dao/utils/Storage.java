@@ -12,12 +12,8 @@ public class Storage {
 	private String DEFAULT_DATA = "";
 	
 	public Storage(Context context){
-		this.context = context;
+		this.setContext(context);
 		sharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-//		SharedPreferences.Editor editor = sharedPrefs.edit();
-//		editor.clear();
-//		editor.commit();
-		
 	}
 	
 	public void setString(String key, String value){
@@ -35,5 +31,13 @@ public class Storage {
 		SharedPreferences.Editor editor = sharedPrefs.edit();
 		editor.remove(key);
 		editor.commit();
+	}
+
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
 	}
 }

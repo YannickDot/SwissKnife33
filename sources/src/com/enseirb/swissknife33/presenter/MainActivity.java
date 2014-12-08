@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Toast;
 
 import com.enseirb.swissknife33.R;
 import com.enseirb.swissknife33.business.BusinessFactory;
@@ -39,8 +38,8 @@ FetchPersonalItemListener,
 FetchToiletListener,
 FetchNestListener, 
 FetchDefibrillatorListener,
-FetchCheckBoxStateListener{
-	private static final String PERSONAL_ITEMS_DELETED_STR = "Personal Items deleted.";
+FetchCheckBoxStateListener {
+	//private static final String PERSONAL_ITEMS_DELETED_STR = "Personal Items deleted.";
 
 	private static final String PERSONAL_ITEMS = "personalItems";
 
@@ -52,10 +51,8 @@ FetchCheckBoxStateListener{
 
 	private static final String TOILETS = "toilets";
 
-	//,
-	//FetchNestListener,
-	// ... 
-	public static BusinessFactory businessFactory = new BusinessFactory();
+	public BusinessFactory businessFactory = new BusinessFactory();
+	private ToastFactory toastFactory = new ToastFactory(this);
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -225,23 +222,15 @@ FetchCheckBoxStateListener{
 				st.remove(Storage.PERSISTENCE_KEY_PERSONAL_ITEM);
 				googleMapManager.removePersonnalItem();
 				
-				Context context = getApplicationContext();
-				String toastText = PERSONAL_ITEMS_DELETED_STR;
-				int duration = Toast.LENGTH_SHORT;
-
-				Toast toast = Toast.makeText(context, toastText, duration);
-				toast.show();
+				toastFactory.displayShortToast(getString(R.string.notif_personal_items_deleted));
 			}
 		});
 	}
-	
 	
 	private void updateCheckBoxState(){
 		businessFactory.getCheckBoxStateBusiness(this, this)
 		.createFetchCheckBoxStatesAsyncTask().execute();
 	}
-	
-	
 	
 	public void activatePersonalMarkers(){
 		personalBox.setChecked(true);

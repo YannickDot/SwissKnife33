@@ -7,7 +7,6 @@ import java.util.List;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.enseirb.swissknife33.business.model.PersonalItem;
 import com.enseirb.swissknife33.dao.DAOFactory;
