@@ -34,7 +34,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 	private Location locationService;
 	private LatLng myLocation;
 	private Vibrator vibration;
-	private int VIBRATION_DURATION = 25;
+	public static int VIBRATION_DURATION = 25;
 	
 	public ArrayList<Marker> parkingMarkers = new ArrayList<Marker>();
 	public ArrayList<Marker> nestMarkers = new ArrayList<Marker>();
@@ -49,7 +49,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 		this.context = context;
 		initMap();
 		
-		this.vibration = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		this.setVibration((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE));
 		map.setOnMapLongClickListener((OnMapLongClickListener) this);
 		map.setMyLocationEnabled(true);
 		//centerMapOnMyLocation();
@@ -284,6 +284,14 @@ public class GoogleMapManager implements OnMapLongClickListener {
 			m.setVisible(false);
 		}
 		personalMarkers.clear();
+	}
+
+	public Vibrator getVibration() {
+		return vibration;
+	}
+
+	public void setVibration(Vibrator vibration) {
+		this.vibration = vibration;
 	}
 
 }

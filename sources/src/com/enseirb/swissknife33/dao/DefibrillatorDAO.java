@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.enseirb.swissknife33.dao.model.DefibrillatorDTO;
-import com.enseirb.swissknife33.dao.model.NestDTO;
 import com.enseirb.swissknife33.dao.utils.Connectivity;
 import com.enseirb.swissknife33.dao.utils.JsonParser;
 import com.enseirb.swissknife33.dao.utils.Storage;

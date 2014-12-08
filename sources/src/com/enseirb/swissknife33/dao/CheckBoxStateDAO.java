@@ -70,4 +70,8 @@ public class CheckBoxStateDAO {
 		return jsonArray;
 	}
 
+	public Context getContext() {
+		return context;
+	}
+
 }

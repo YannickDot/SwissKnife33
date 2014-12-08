@@ -100,4 +100,8 @@ public class PersonalItemDAO {
 		return jsonArray;
 	}
 
+	public Context getContext() {
+		return context;
+	}
+
 }

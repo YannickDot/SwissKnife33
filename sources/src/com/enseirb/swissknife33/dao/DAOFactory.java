@@ -2,14 +2,12 @@ package com.enseirb.swissknife33.dao;
 
 import android.content.Context;
 
-import com.enseirb.swissknife33.business.model.CheckBoxState;
 import com.enseirb.swissknife33.parser.CheckBoxStateParser;
 import com.enseirb.swissknife33.parser.DefibrillatorParser;
 import com.enseirb.swissknife33.parser.NestParser;
 import com.enseirb.swissknife33.parser.ParkingParser;
 import com.enseirb.swissknife33.parser.PersonalItemParser;
 import com.enseirb.swissknife33.parser.ToiletParser;
-import com.enseirb.swissknife33.presenter.ui.FetchCheckBoxStateListener;
 
 public class DAOFactory {
 
