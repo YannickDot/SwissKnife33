@@ -39,7 +39,6 @@ FetchToiletListener,
 FetchNestListener, 
 FetchDefibrillatorListener,
 FetchCheckBoxStateListener {
-	//private static final String PERSONAL_ITEMS_DELETED_STR = "Personal Items deleted.";
 
 	private static final String PERSONAL_ITEMS = "personalItems";
 
@@ -64,7 +63,7 @@ FetchCheckBoxStateListener {
 	private Button clearButton;
 
 	private List<CheckBoxState> checkBoxStateList = new ArrayList<CheckBoxState>();
-	
+
 	private GoogleMapManager googleMapManager; 
 
 	@Override
@@ -87,17 +86,17 @@ FetchCheckBoxStateListener {
 		// Getting reference to map
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		googleMapManager = new GoogleMapManager(mapFragment, this);
-		
+
 		checkBoxJob();
 		clearButtonJob();
 		updateCheckBoxState();
 	}
-	
+
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 
 	}
-	
+
 	public void checkBoxJob(){
 		toiletsBoxJob();
 		parkingsBoxJob();
@@ -132,7 +131,7 @@ FetchCheckBoxStateListener {
 					googleMapManager.showParkingMarkers();
 				}
 				else{
-					//REmove parking markers
+					//Remove parking markers
 					googleMapManager.hideParkingMarkers();
 				}				
 			}
@@ -192,7 +191,7 @@ FetchCheckBoxStateListener {
 		businessFactory.getCheckBoxStateBusiness(this, (FetchCheckBoxStateListener) this)
 		.createSaveCheckBoxStatesAsyncTask(checkBoxStateList).execute();
 	}
-	
+
 	private void initCheckBoxStateList(){
 		CheckBoxState toiletsBoxState = new CheckBoxState().setName(TOILETS)
 				.setState(toiletsBox.isChecked());
@@ -211,7 +210,7 @@ FetchCheckBoxStateListener {
 		checkBoxStateList.add(defibrillatorsBoxState);
 		checkBoxStateList.add(personalItemsBoxState);
 	}
-	
+
 	private void clearButtonJob(){
 		final Context that = this;
 		clearButton.setOnClickListener(new OnClickListener() {
@@ -221,33 +220,32 @@ FetchCheckBoxStateListener {
 				Storage st = new Storage(that);
 				st.remove(Storage.PERSISTENCE_KEY_PERSONAL_ITEM);
 				googleMapManager.removePersonnalItem();
-				
+
 				toastFactory.displayShortToast(getString(R.string.notif_personal_items_deleted));
 			}
 		});
 	}
-	
+
 	private void updateCheckBoxState(){
 		businessFactory.getCheckBoxStateBusiness(this, this)
 		.createFetchCheckBoxStatesAsyncTask().execute();
 	}
-	
+
 	public void activatePersonalMarkers(){
 		personalBox.setChecked(true);
 	}
-	
-	//Parkings methods 
+
+	// Parkings methods 
 
 	@Override
 	public void onFetchParkingsSuccess(List<Parking> parkings) {
-		//TODO Display parkings data
+		toastFactory.displayShortToast("Displaying parkings.");
 		updateParkings(parkings);
 	}
 
 	@Override
 	public void onFetchParkingsError() {
-		//TODO Display error
-		System.out.println("An error occured while fetching parkings.");
+		toastFactory.displayShortToast("An error occured while fetching parkings.");
 	}
 
 	@Override
@@ -261,7 +259,6 @@ FetchCheckBoxStateListener {
 		System.out.println(parkings.size() + " parkings fetched !");
 		googleMapManager.renderParkingMarkers(parkings);
 	}
-
 
 	//PersonalItems Methods
 
@@ -341,8 +338,6 @@ FetchCheckBoxStateListener {
 	private void updateNests(List<Nest> nests) {
 		googleMapManager.renderNestMarkers(nests);
 	}
-
-
 
 	//Toilets Methods
 
