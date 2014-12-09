@@ -221,6 +221,7 @@ FetchCheckBoxStateListener {
 				st.remove(Storage.PERSISTENCE_KEY_PERSONAL_ITEM);
 				googleMapManager.removePersonnalItem();
 
+				desactivatePersonalMarkers();
 				toastFactory.displayShortToast(getString(R.string.notif_personal_items_deleted));
 			}
 		});
@@ -235,7 +236,11 @@ FetchCheckBoxStateListener {
 		personalBox.setChecked(true);
 	}
 
-	// Parkings methods 
+	public void desactivatePersonalMarkers(){
+		personalBox.setChecked(false);
+	}
+
+	//Parkings methods 
 
 	@Override
 	public void onFetchParkingsSuccess(List<Parking> parkings) {
