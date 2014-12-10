@@ -74,7 +74,6 @@ public class NavigationDrawerFragment extends Fragment {
 				&& mDrawerLayout.isDrawerOpen(mFragmentContainerView);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void setUp(int fragmentId, DrawerLayout drawerLayout) {
 		mFragmentContainerView = getActivity().findViewById(fragmentId);
 		mDrawerLayout = drawerLayout;
@@ -142,14 +141,12 @@ public class NavigationDrawerFragment extends Fragment {
 		outState.putInt(STATE_SELECTED_POSITION, mCurrentSelectedPosition);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {

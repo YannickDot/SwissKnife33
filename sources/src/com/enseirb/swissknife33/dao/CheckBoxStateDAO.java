@@ -64,11 +64,6 @@ public class CheckBoxStateDAO {
 		return checkBoxStateDTO_JSONArray.toString();
 	}
 	
-	private JSONArray fromJSONText(String jsonArrayText) throws JSONException{
-		JSONArray jsonArray = new JSONArray(jsonArrayText);
-		
-		return jsonArray;
-	}
 
 	public Context getContext() {
 		return context;

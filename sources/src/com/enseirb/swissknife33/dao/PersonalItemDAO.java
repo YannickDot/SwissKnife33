@@ -77,22 +77,6 @@ public class PersonalItemDAO {
 		storage.remove(PERSISTENCE_KEY_PERSONAL_ITEM);
 	}
 	
-	private String toJSONText(List<PersonalItemDTO> list) throws JSONException{
-		JSONArray personalItemDTO_JSONArray = new JSONArray();
-		
-		for (PersonalItemDTO p : list){
-			JSONObject personalItemDTO_JSON = new JSONObject();
-			personalItemDTO_JSON
-			.put(KEY, p.getKey())
-			.put(NAME, p.getName())
-			.put(LONGITUDE, p.getLongitude())
-			.put(LATITUDE, p.getLatitude());
-			
-			personalItemDTO_JSONArray.put(personalItemDTO_JSON);
-		}
-			
-		return personalItemDTO_JSONArray.toString();
-	}
 	
 	private JSONArray fromJSONText(String jsonArrayText) throws JSONException{
 		JSONArray jsonArray = new JSONArray(jsonArrayText);
