@@ -94,7 +94,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
-							));
+					.visible(((MainActivity) context).isParkingsBoxChecked())));
 		}
 	}
 
@@ -127,7 +127,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
-							));;
+					.visible(((MainActivity) context).isPersonalBoxChecked())));;
 		}
 	}
 
@@ -160,7 +160,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
-							));;
+					.visible(((MainActivity) context).isDefibrillatorsBoxChecked())));
 		}
 	}
 
@@ -193,7 +193,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
-							));;
+					.visible(((MainActivity) context).isNestsBoxChecked())));
 		}
 	}
 
@@ -226,7 +226,7 @@ public class GoogleMapManager implements OnMapLongClickListener {
 					.anchor(0.0f, 1.0f)
 					.title(item.getName())
 					.position(new LatLng(item.getLatitude(), item.getLongitude()))
-							));;
+					.visible(((MainActivity) context).isToiletsBoxChecked())));
 		}
 	}
 

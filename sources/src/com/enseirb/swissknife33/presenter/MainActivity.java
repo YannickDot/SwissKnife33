@@ -32,7 +32,6 @@ import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
 import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends Activity implements
-NavigationDrawerFragment.NavigationDrawerCallbacks,
 FetchParkingListener, 
 FetchPersonalItemListener,
 FetchToiletListener,
@@ -90,11 +89,6 @@ FetchCheckBoxStateListener {
 		checkBoxJob();
 		clearButtonJob();
 		updateCheckBoxState();
-	}
-
-	@Override
-	public void onNavigationDrawerItemSelected(int position) {
-
 	}
 
 	public void checkBoxJob(){
@@ -240,6 +234,25 @@ FetchCheckBoxStateListener {
 		personalBox.setChecked(false);
 	}
 
+	public boolean isToiletsBoxChecked(){
+		return toiletsBox.isChecked();
+	}
+	
+	public boolean isParkingsBoxChecked(){
+		return parkingsBox.isChecked();
+	}
+	
+	public boolean isNestsBoxChecked(){
+		return nestsBox.isChecked();
+	}
+	
+	public boolean isDefibrillatorsBoxChecked(){
+		return defibrillatorsBox.isChecked();
+	}
+	
+	public boolean isPersonalBoxChecked(){
+		return personalBox.isChecked();
+	}
 	//Parkings methods 
 
 	@Override
