@@ -1,26 +1,24 @@
 package com.enseirb.swissknife33.presenter;
 
-
-import com.enseirb.swissknife33.R;
-
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.enseirb.swissknife33.R;
+
 @SuppressWarnings("deprecation")
 public class NavigationDrawerFragment extends Fragment {
-
 
 	private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
 
@@ -36,8 +34,7 @@ public class NavigationDrawerFragment extends Fragment {
 	private boolean mFromSavedInstanceState;
 	private boolean mUserLearnedDrawer;
 
-	public NavigationDrawerFragment() {
-	}
+	public NavigationDrawerFragment() {}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -158,5 +155,4 @@ public class NavigationDrawerFragment extends Fragment {
 	private ActionBar getActionBar() {
 		return getActivity().getActionBar();
 	}
-
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 public class ToastFactory {
+	
 	private Context context = null;
 
 	public ToastFactory(Context context) {

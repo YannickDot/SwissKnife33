@@ -12,4 +12,16 @@
     <string name="action_settings">Settings</string>
     <string name="shared_preferences_personal_items_data">SHARED_PREFS_PERSONAL</string>
 	<string name="notif_personal_items_deleted">Personal items deleted.</string>
+	<string name="notif_wait_parkings">Fetching parkings.</string>
+	<string name="notif_error_parkings">An error occured while fetching parkings.</string>
+	<string name="notif_wait_personalitems">Fetching personalItems.</string>
+	<string name="notif_error_personalitems">An error occured while fetching personalItems.</string>
+	<string name="notif_wait_defibrillators">Fetching defibrillators.</string>
+	<string name="notif_error_defibrillators">An error occured while fetching defibrillators.</string>
+	<string name="notif_wait_nests">Fetching nests.</string>
+	<string name="notif_error_nests">An error occured while fetching nests.</string>
+	<string name="notif_wait_toilets">Fetching toilets.</string>
+	<string name="notif_error_toilets">An error occured while fetching toilets.</string>
+	<string name="notif_wait_checkboxes_states">Fetching checkboxes states.</string>
+	<string name="notif_error_checkboxes_states">An error occured while fetching checkboxes states.</string>
 </resources>
