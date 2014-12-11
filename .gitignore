@@ -5,7 +5,6 @@
 /sources/bin/dexedLibs/
 /sources/bin/resources.ap_
 
-*.apk
 *.ap_
 *.dex
 *.class
