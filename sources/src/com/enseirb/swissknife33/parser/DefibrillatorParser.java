@@ -11,6 +11,18 @@ import com.enseirb.swissknife33.dao.model.DefibrillatorDTO;
 
 public class DefibrillatorParser extends AbstractParser<DefibrillatorDTO> {
 
+	private static final String KEYWORD_KEY = "cle";
+	private static final String KEYWORD_ADDRESS = "adresse";
+	private static final String KEYWORD_CITY = "commune";
+	private static final String KEYWORD_ZIP_CODE = "code_postal";
+	private static final String KEYWORD_NAME = "nom";
+	private static final String KEYWORD_PHONE = "telephone";
+	private static final String KEYWORD_TYPOLOGY = "typologie";
+	private static final String KEYWORD_INSTALLED = "installe";
+	private static final String INFORMATION = "information";
+	private static final String KEYWORD_LONGITUDE = "x_long";
+	private static final String KEYWORD_LATITUDE = "y_lat";
+
 	public List<DefibrillatorDTO> parse(JSONArray defibrillatorsArray) throws JSONException {
 		
 		List<DefibrillatorDTO> list = new ArrayList<DefibrillatorDTO>();
@@ -20,28 +32,28 @@ public class DefibrillatorParser extends AbstractParser<DefibrillatorDTO> {
 			DefibrillatorDTO p = new DefibrillatorDTO();
 			JSONObject jsonDefibrillator = defibrillatorsArray.getJSONObject(i);
 			
-			if (jsonDefibrillator.has("cle"))
-				p.setKey(jsonDefibrillator.getString("cle"));
-			if (jsonDefibrillator.has("adresse"))
-				p.setAddress(jsonDefibrillator.getString("adresse"));
-			if (jsonDefibrillator.has("commune"))
-				p.setTown(jsonDefibrillator.getString("commune"));
-			if (jsonDefibrillator.has("code_postal"))
-				p.setZip_code(jsonDefibrillator.getString("code_postal"));
-			if (jsonDefibrillator.has("nom"))
-				p.setName(jsonDefibrillator.getString("nom"));
-			if (jsonDefibrillator.has("telephone"))
-				p.setPhone(jsonDefibrillator.getString("telephone"));
-			if (jsonDefibrillator.has("typologie"))
-				p.setTypology(jsonDefibrillator.getString("typologie"));
-			if (jsonDefibrillator.has("installe"))
-				p.setInstalled(jsonDefibrillator.getString("installe"));
-			if (jsonDefibrillator.has("information"))
-				p.setInformation(jsonDefibrillator.getString("information"));
-			if (jsonDefibrillator.has("x_long"))
-				p.setLongitude(jsonDefibrillator.getString("x_long"));
-			if (jsonDefibrillator.has("y_lat"))
-				p.setLatitude(jsonDefibrillator.getString("y_lat"));
+			if (jsonDefibrillator.has(KEYWORD_KEY))
+				p.setKey(jsonDefibrillator.getString(KEYWORD_KEY));
+			if (jsonDefibrillator.has(KEYWORD_ADDRESS))
+				p.setAddress(jsonDefibrillator.getString(KEYWORD_ADDRESS));
+			if (jsonDefibrillator.has(KEYWORD_CITY))
+				p.setTown(jsonDefibrillator.getString(KEYWORD_CITY));
+			if (jsonDefibrillator.has(KEYWORD_ZIP_CODE))
+				p.setZip_code(jsonDefibrillator.getString(KEYWORD_ZIP_CODE));
+			if (jsonDefibrillator.has(KEYWORD_NAME))
+				p.setName(jsonDefibrillator.getString(KEYWORD_NAME));
+			if (jsonDefibrillator.has(KEYWORD_PHONE))
+				p.setPhone(jsonDefibrillator.getString(KEYWORD_PHONE));
+			if (jsonDefibrillator.has(KEYWORD_TYPOLOGY))
+				p.setTypology(jsonDefibrillator.getString(KEYWORD_TYPOLOGY));
+			if (jsonDefibrillator.has(KEYWORD_INSTALLED))
+				p.setInstalled(jsonDefibrillator.getString(KEYWORD_INSTALLED));
+			if (jsonDefibrillator.has(INFORMATION))
+				p.setInformation(jsonDefibrillator.getString(INFORMATION));
+			if (jsonDefibrillator.has(KEYWORD_LONGITUDE))
+				p.setLongitude(jsonDefibrillator.getString(KEYWORD_LONGITUDE));
+			if (jsonDefibrillator.has(KEYWORD_LATITUDE))
+				p.setLatitude(jsonDefibrillator.getString(KEYWORD_LATITUDE));
 			
 			list.add(p);
 		}

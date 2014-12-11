@@ -10,15 +10,19 @@ import org.json.JSONObject;
 import com.enseirb.swissknife33.dao.model.CheckBoxStateDTO;
 
 public class CheckBoxStateParser {
+	
+	private static final String KEYWORD_STATE = "state";
+	private static final String KEYWORD_NAME = "name";
+
 	public List<CheckBoxStateDTO> parse(JSONArray checkBoxStateArray) throws JSONException {
 		List<CheckBoxStateDTO> list = new ArrayList<CheckBoxStateDTO>();
 		for (int i =0; i < checkBoxStateArray.length(); i++){
 			CheckBoxStateDTO p = new CheckBoxStateDTO();
 			JSONObject jsonCheckBoxState = checkBoxStateArray.getJSONObject(i);
-			if (jsonCheckBoxState.has("state"))
-				p.setState(jsonCheckBoxState.getString("state"));
-			if (jsonCheckBoxState.has("name"))
-				p.setName(jsonCheckBoxState.getString("name"));
+			if (jsonCheckBoxState.has(KEYWORD_STATE))
+				p.setState(jsonCheckBoxState.getString(KEYWORD_STATE));
+			if (jsonCheckBoxState.has(KEYWORD_NAME))
+				p.setName(jsonCheckBoxState.getString(KEYWORD_NAME));
 
 			list.add(p);
 		}

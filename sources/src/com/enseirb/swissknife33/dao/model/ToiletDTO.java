@@ -5,7 +5,7 @@ public class ToiletDTO extends AbstractDTO {
 	private String key;
 	private String address;
 	private String name;
-	private String neighborhood;
+	private String district;
 	private String typology;
 	private String longitude;
 	private String latitude;
@@ -31,11 +31,11 @@ public class ToiletDTO extends AbstractDTO {
 		this.name = name;
 		return this;
 	}
-	public String getNeighborhood() {
-		return neighborhood;
+	public String getDistrict() {
+		return district;
 	}
-	public ToiletDTO setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
+	public ToiletDTO setDistrict(String district) {
+		this.district = district;
 		return this;
 	}
 	public String getTypology() {

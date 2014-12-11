@@ -7,7 +7,7 @@ public class Toilet {
 	private int key;
 	private String address;
 	private String name;
-	private String neighborhood;
+	private String district;
 	private String typology;
 	private double longitude;
 	private double latitude;
@@ -34,11 +34,11 @@ public class Toilet {
 		this.name = name;
 		return this;
 	}
-	public String getNeighborhood() {
-		return neighborhood;
+	public String getDistrict() {
+		return district;
 	}
-	public Toilet setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
+	public Toilet setDistrict(String district) {
+		this.district = district;
 		return this;
 	}
 	public String getTypology() {

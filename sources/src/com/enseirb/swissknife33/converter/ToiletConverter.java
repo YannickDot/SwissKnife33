@@ -43,7 +43,7 @@ public class ToiletConverter {
 		.setKey(Integer.valueOf(t.getKey()))
 		.setAddress(t.getAddress())
 		.setName(t.getName())
-		.setNeighborhood(t.getNeighborhood())
+		.setDistrict(t.getDistrict())
 		.setTypology(t.getTypology())
 		.setLongitude(Double.valueOf(t.getLongitude()))
 		.setLatitude(Double.valueOf(t.getLatitude()));
