@@ -57,8 +57,7 @@ public class ParkingConverter {
 		String n = p.getNumberOfSpace();
 		if ( n != null && n.isEmpty() == false) {
 			return parking.setNumberOfSpace(Integer.valueOf(p.getNumberOfSpace()));
-		}
-		else {
+		} else {
 			return parking.setNumberOfSpace(UNDEFINED);
 		}
 	}

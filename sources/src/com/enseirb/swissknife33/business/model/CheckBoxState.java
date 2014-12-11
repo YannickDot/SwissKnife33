@@ -1,6 +1,7 @@
 package com.enseirb.swissknife33.business.model;
 
 public class CheckBoxState {
+	
 	private String name; 
 	private boolean state;
 	public String getName() {

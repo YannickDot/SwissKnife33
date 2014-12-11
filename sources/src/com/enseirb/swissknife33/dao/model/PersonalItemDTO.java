@@ -1,6 +1,5 @@
 package com.enseirb.swissknife33.dao.model;
 
-
 public class PersonalItemDTO extends AbstractDTO {
 	
 	private String key;
@@ -36,5 +35,4 @@ public class PersonalItemDTO extends AbstractDTO {
 		this.latitude = latitude;
 		return this;
 	}
-
 }

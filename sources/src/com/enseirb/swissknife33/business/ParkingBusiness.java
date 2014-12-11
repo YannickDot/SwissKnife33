@@ -18,7 +18,6 @@ public class ParkingBusiness {
 
 	private ConverterFactory converterFactory = new ConverterFactory();
 
-
 	public ParkingBusiness(Context context, FetchParkingListener listener) {
 		this.context = context;
 		this.listener = listener;
@@ -48,8 +47,7 @@ public class ParkingBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					listener.onFetchParkingsSuccess(parkings);
-				}
-				else {
+				} else {
 					listener.onFetchParkingsError();
 				}
 			}

@@ -17,7 +17,6 @@ public class ToiletBusiness {
 
 	private ConverterFactory converterFactory = new ConverterFactory();
 
-
 	public ToiletBusiness(Context context, FetchToiletListener listener) {
 		this.context = context;
 		this.listener = listener;
@@ -47,8 +46,7 @@ public class ToiletBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					listener.onFetchToiletsSuccess(toilets);
-				}
-				else {
+				} else {
 					listener.onFetchToiletsError();
 				}
 			}

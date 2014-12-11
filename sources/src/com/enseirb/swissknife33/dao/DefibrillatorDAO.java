@@ -70,11 +70,14 @@ public class DefibrillatorDAO extends AbstractDAO<DefibrillatorDTO> {
 		
 		JSONArray defibrilatorsArray = jsonResult.getJSONArray("d");
 		
-		//update Cache
-		storage.setString(PERSISTENCE_KEY_DEFIBRILATORS, defibrilatorsArray.toString());
+		updateCache(defibrilatorsArray);
 		
 		List<DefibrillatorDTO> list = parser.parse(defibrilatorsArray);
 		
 		return list;
+	}
+
+	private void updateCache(JSONArray defibrilatorsArray) {
+		storage.setString(PERSISTENCE_KEY_DEFIBRILATORS, defibrilatorsArray.toString());
 	}
 }

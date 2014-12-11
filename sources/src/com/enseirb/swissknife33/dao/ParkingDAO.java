@@ -71,12 +71,14 @@ public class ParkingDAO extends AbstractDAO<ParkingDTO> {
 		
 		JSONArray parkingsArray = jsonResult.getJSONArray("d");
 		
-		//update Cache
-		storage.setString(PERSISTENCE_KEY_PARKINGS, parkingsArray.toString());
+		updateCache(parkingsArray);
 		
 		List<ParkingDTO> list = parser.parse(parkingsArray);
 		
 		return list;
 	}
-	
+
+	private void updateCache(JSONArray parkingsArray) {
+		storage.setString(PERSISTENCE_KEY_PARKINGS, parkingsArray.toString());
+	}
 }

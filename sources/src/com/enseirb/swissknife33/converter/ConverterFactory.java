@@ -27,5 +27,4 @@ public class ConverterFactory {
 	public CheckBoxStateConverter getCheckBoxStateConverter(Context context) {
 		return new CheckBoxStateConverter(context);
 	}
-	
 }

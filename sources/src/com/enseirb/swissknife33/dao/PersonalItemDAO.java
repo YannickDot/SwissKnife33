@@ -68,7 +68,6 @@ public class PersonalItemDAO {
 			old_values.put(personalItemDTO_JSON);
 		}
 		
-		
 		storage.setString(PERSISTENCE_KEY_PERSONAL_ITEM, old_values.toString());
 		return 0;
 	}

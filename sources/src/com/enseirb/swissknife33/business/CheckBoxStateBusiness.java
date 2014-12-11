@@ -10,8 +10,8 @@ import com.enseirb.swissknife33.converter.ConverterFactory;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.presenter.ui.FetchCheckBoxStateListener;
 
-
 public class CheckBoxStateBusiness {
+	
 	private Context context = null;
 	private FetchCheckBoxStateListener listener = null;
 	private List<CheckBoxState> checkboxstate = null;
@@ -47,8 +47,7 @@ public class CheckBoxStateBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					listener.onFetchCheckBoxStatesSuccess(checkboxstate);
-				}
-				else {
+				} else {
 					listener.onFetchCheckBoxStatesError();
 				}
 			}
@@ -79,8 +78,7 @@ public class CheckBoxStateBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					//System.out.println("CheckBox states saved.");
-				}
-				else {
+				} else {
 					//System.out.println("CheckBox states save failed.");
 				}
 			}

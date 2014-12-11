@@ -11,12 +11,12 @@ import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 
 public class NestBusiness {
+	
 	private Context context = null;
 	private FetchNestListener listener = null;
 	private List<Nest> nests = null;
 
 	private ConverterFactory converterFactory = new ConverterFactory();
-
 
 	public NestBusiness(Context context, FetchNestListener listener) {
 		this.context = context;
@@ -47,8 +47,7 @@ public class NestBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					listener.onFetchNestsSuccess(nests);
-				}
-				else {
+				} else {
 					listener.onFetchNestsError();
 				}
 			}

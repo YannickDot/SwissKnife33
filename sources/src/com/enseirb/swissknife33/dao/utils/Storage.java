@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Storage {
+	
 	private Context context = null;
 	private SharedPreferences sharedPrefs = null;
 	

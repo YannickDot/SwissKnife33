@@ -59,5 +59,4 @@ public class ToiletDTO extends AbstractDTO {
 		this.latitude = latitude;
 		return this;
 	}
-	
 }

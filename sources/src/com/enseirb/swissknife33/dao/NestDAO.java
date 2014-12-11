@@ -71,11 +71,14 @@ public class NestDAO extends AbstractDAO<NestDTO> {
 		
 		JSONArray nestsArray = jsonResult.getJSONArray("d");
 		
-		//update Cache
-		storage.setString(PERSISTENCE_KEY_NESTS, nestsArray.toString());
+		updateCache(nestsArray);
 		
 		List<NestDTO> list = parser.parse(nestsArray);
 		
 		return list;
+	}
+
+	private void updateCache(JSONArray nestsArray) {
+		storage.setString(PERSISTENCE_KEY_NESTS, nestsArray.toString());
 	}
 }

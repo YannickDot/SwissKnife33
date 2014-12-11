@@ -16,6 +16,9 @@ import android.util.Log;
 
 public class JsonParser {
 	
+	private static final String JSON = "JSON";
+	private static final String UTF_8 = "UTF-8";
+
 	private static String readAll(Reader rd) throws IOException {
 	    StringBuilder sb = new StringBuilder();
 	    int cp;
@@ -28,10 +31,10 @@ public class JsonParser {
 	public JSONObject readJsonFromUrl(String url) throws MalformedURLException, IOException, JSONException{
 		InputStream is = new URL(url).openStream();
 		try {
-	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName(UTF_8)));
 	      String jsonText = readAll(rd);
 	      
-	      Log.i("JSON", jsonText);
+	      Log.i(JSON, jsonText);
 	      
 	      JSONObject json = new JSONObject(jsonText);
 	      return json;

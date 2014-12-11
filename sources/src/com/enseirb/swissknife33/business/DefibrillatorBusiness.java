@@ -11,12 +11,12 @@ import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.presenter.ui.FetchDefibrillatorListener;
 
 public class DefibrillatorBusiness {
+	
 	private Context context = null;
 	private FetchDefibrillatorListener listener = null;
 	private List<Defibrillator> defibrillators = null;
 
 	private ConverterFactory converterFactory = new ConverterFactory();
-
 
 	public DefibrillatorBusiness(Context context, FetchDefibrillatorListener listener) {
 		this.context = context;
@@ -47,8 +47,7 @@ public class DefibrillatorBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					listener.onFetchDefibrillatorsSuccess(defibrillators);
-				}
-				else {
+				} else {
 					listener.onFetchDefibrillatorsError();
 				}
 			}

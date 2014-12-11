@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class Connectivity {
+	
 	private ConnectivityManager connectivityManager;
 	private NetworkInfo networkInfo;
 	

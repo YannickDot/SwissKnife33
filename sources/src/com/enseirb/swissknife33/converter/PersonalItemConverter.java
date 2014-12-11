@@ -14,6 +14,7 @@ import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
 
 public class PersonalItemConverter {
+	
 	private DAOFactory daoFactory = new DAOFactory();
 	private Context context;
 	
@@ -48,7 +49,6 @@ public class PersonalItemConverter {
 			}
 			saved = daoFactory.getPersonalItemDAO(context).save(personalItemsDTO);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -74,5 +74,4 @@ public class PersonalItemConverter {
 		
 		return personalItemDTO;
 	}
-
 }

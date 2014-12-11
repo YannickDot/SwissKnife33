@@ -1,6 +1,7 @@
 package com.enseirb.swissknife33.dao.model;
 
 public class CheckBoxStateDTO {
+	
 	private String name;
 	private String state;
 	
@@ -18,5 +19,4 @@ public class CheckBoxStateDTO {
 		this.state = state;
 		return this;
 	}
-
 }

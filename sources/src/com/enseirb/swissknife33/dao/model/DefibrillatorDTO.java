@@ -91,6 +91,4 @@ public class DefibrillatorDTO extends AbstractDTO {
 		this.latitude = latitude;
 		return this;
 	}
-	
-	
 }

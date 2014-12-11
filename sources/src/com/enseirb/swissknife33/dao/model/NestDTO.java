@@ -51,5 +51,4 @@ public class NestDTO extends AbstractDTO {
 		this.latitude = latitude;
 		return this;
 	}
-	
 }

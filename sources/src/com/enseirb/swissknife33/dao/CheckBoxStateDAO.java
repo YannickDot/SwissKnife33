@@ -13,6 +13,7 @@ import com.enseirb.swissknife33.dao.utils.Storage;
 import com.enseirb.swissknife33.parser.CheckBoxStateParser;
 
 public class CheckBoxStateDAO {
+	
 	private static final String NAME = "name";
 	private static final String STATE = "state";
 	
@@ -68,5 +69,4 @@ public class CheckBoxStateDAO {
 	public Context getContext() {
 		return context;
 	}
-
 }

@@ -14,6 +14,7 @@ import com.enseirb.swissknife33.dao.model.CheckBoxStateDTO;
 import com.enseirb.swissknife33.exception.Swissknife33Exception;
 
 public class CheckBoxStateConverter {
+	
 	private DAOFactory daoFactory = new DAOFactory();
 	private Context context;
 

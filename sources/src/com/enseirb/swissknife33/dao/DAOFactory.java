@@ -18,7 +18,6 @@ public class DAOFactory {
 	private static final String NEST_URL = "abrisfaune";
 	private static final String TOILET_URL = "sigsanitaire";
 
-
 	public ParkingDAO getParkingDAO(Context context) {
 		ParkingDAO dao = new ParkingDAO(WEBSERVICE_URL_PREFIX + PARKING_URL + FORMAT_JSON,
 				new ParkingParser(), context);

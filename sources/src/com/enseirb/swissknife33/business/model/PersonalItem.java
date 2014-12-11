@@ -3,6 +3,7 @@ package com.enseirb.swissknife33.business.model;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 public class PersonalItem {
+	
 	private int key;
     private String name;
     private double longitude;
@@ -43,6 +44,4 @@ public class PersonalItem {
 	public void setColor(float color) {
 		this.color = color;
 	}
-    
-	
 }

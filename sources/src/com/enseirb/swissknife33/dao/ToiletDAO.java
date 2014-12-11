@@ -71,11 +71,14 @@ public class ToiletDAO extends AbstractDAO<ToiletDTO> {
 		
 		JSONArray toiletsArray = jsonResult.getJSONArray("d");
 		
-		//update Cache
-		storage.setString(PERSISTENCE_KEY_TOILETS, toiletsArray.toString());
+		updateCache(toiletsArray);
 		
 		List<ToiletDTO> list = parser.parse(toiletsArray);
 		
 		return list;
+	}
+
+	private void updateCache(JSONArray toiletsArray) {
+		storage.setString(PERSISTENCE_KEY_TOILETS, toiletsArray.toString());
 	}
 }

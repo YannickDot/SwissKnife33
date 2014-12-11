@@ -11,12 +11,12 @@ import com.enseirb.swissknife33.exception.Swissknife33Exception;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
 
 public class PersonalItemBusiness {
+	
 	private Context context = null;
 	private FetchPersonalItemListener listener = null;
 	private List<PersonalItem> personalItems = null;
 
 	private ConverterFactory converterFactory = new ConverterFactory();
-
 
 	public PersonalItemBusiness(Context context, FetchPersonalItemListener listener) {
 		this.context = context;
@@ -80,8 +80,7 @@ public class PersonalItemBusiness {
 			protected void onPostExecute(Boolean success) {
 				if (success) {
 					//System.out.println("PersonalItems saved.");
-				}
-				else {
+				} else {
 					//System.out.println("PersonalItems save failed.");
 				}
 			}
