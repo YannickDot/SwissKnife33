@@ -35,9 +35,6 @@ public class PersonalItemBusiness {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 
-				//TODO Check network connectivity using context !
-				// Here or not ? We can check it in the DAO.
-				// If we do it in the DAO, we need to pass the context.
 				try {
 					personalItems = converterFactory.getPersonalItemConverter(context).fetch();
 				} catch (Swissknife33Exception e) {
@@ -82,12 +79,10 @@ public class PersonalItemBusiness {
 			@Override
 			protected void onPostExecute(Boolean success) {
 				if (success) {
-					//listener.onFetchPersonalItemsSuccess(personalItems);
-					System.out.println("PersonalItems saved.");
+					//System.out.println("PersonalItems saved.");
 				}
 				else {
-					//listener.onFetchPersonalItemsError();
-					System.out.println("PersonalItems save failed.");
+					//System.out.println("PersonalItems save failed.");
 				}
 			}
 		};

@@ -61,8 +61,7 @@ public class CheckBoxStateBusiness {
 			@Override
 			protected void onPreExecute() {
 				super.onPreExecute();
-				//listener.onWaitForPersonalItems();
-				System.out.println("saving CheckBox states.");
+				//System.out.println("saving CheckBox states.");
 			}
 
 			@Override
@@ -79,12 +78,10 @@ public class CheckBoxStateBusiness {
 			@Override
 			protected void onPostExecute(Boolean success) {
 				if (success) {
-					//listener.onFetchPersonalItemsSuccess(personalItems);
-					System.out.println("CheckBox states saved.");
+					//System.out.println("CheckBox states saved.");
 				}
 				else {
-					//listener.onFetchPersonalItemsError();
-					System.out.println("CheckBox states save failed.");
+					//System.out.println("CheckBox states save failed.");
 				}
 			}
 		};

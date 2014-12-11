@@ -36,9 +36,6 @@ public class ParkingBusiness {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 
-				//TODO Check network connectivity using context !
-				// Here or not ? We can check it in the DAO.
-				// If we do it in the DAO, we need to pass the context.
 				try {
 					parkings = converterFactory.getParkingConverter(context).fetch();
 				} catch (Swissknife33Exception e) {
