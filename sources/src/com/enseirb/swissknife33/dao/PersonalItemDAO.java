@@ -8,7 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.enseirb.swissknife33.dao.model.PersonalItemDTO;
 import com.enseirb.swissknife33.dao.utils.Storage;
@@ -38,7 +37,6 @@ public class PersonalItemDAO {
 		JSONArray jsonDataArray = new JSONArray();
 		
 		String savedItems = storage.getString(PERSISTENCE_KEY_PERSONAL_ITEM);
-		Log.i("personalitem debug", savedItems);
 		jsonDataArray = new JSONArray(savedItems);
 		
 		List<PersonalItemDTO> list = new ArrayList<PersonalItemDTO>();

@@ -10,7 +10,7 @@ public class Storage {
 	
 	public static String APP_SHARED_PREFS = "com.enseirb.swissknife33";
 	public static String PERSISTENCE_KEY_PERSONAL_ITEM = "PERSONAL_ITEM_DATA";
-	private String DEFAULT_DATA = "";
+	private String DEFAULT_DATA_EMPTY_JSON_LIST = "[]";
 	
 	public Storage(Context context){
 		this.setContext(context);
@@ -24,7 +24,7 @@ public class Storage {
 	}
 	
 	public String getString(String key){
-		String savedItems = sharedPrefs.getString(key, DEFAULT_DATA);
+		String savedItems = sharedPrefs.getString(key, DEFAULT_DATA_EMPTY_JSON_LIST);
 		return savedItems;
 	}
 	
