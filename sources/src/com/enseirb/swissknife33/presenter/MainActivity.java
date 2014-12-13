@@ -30,6 +30,7 @@ import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
 import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapsInitializer;
 
 public class MainActivity extends Activity implements
 FetchParkingListener, 
@@ -72,6 +73,7 @@ FetchCheckBoxStateListener {
 
 		initializeNavigationDrawer();
 		initializeCheckBoxesAndButtons();
+		MapsInitializer.initialize(getApplicationContext());
 		initializeMap();
 
 		setCheckBoxesBehaviour();
