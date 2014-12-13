@@ -29,6 +29,8 @@ import com.enseirb.swissknife33.presenter.ui.FetchNestListener;
 import com.enseirb.swissknife33.presenter.ui.FetchParkingListener;
 import com.enseirb.swissknife33.presenter.ui.FetchPersonalItemListener;
 import com.enseirb.swissknife33.presenter.ui.FetchToiletListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapsInitializer;
 
@@ -69,17 +71,24 @@ FetchCheckBoxStateListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		int checkGooglePlayServicesCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		if(checkGooglePlayServicesCode == ConnectionResult.SUCCESS) {
+			setContentView(R.layout.activity_main);
 
-		initializeNavigationDrawer();
-		initializeCheckBoxesAndButtons();
-		MapsInitializer.initialize(getApplicationContext());
-		initializeMap();
+			initializeNavigationDrawer();
+			initializeCheckBoxesAndButtons();
+			MapsInitializer.initialize(getApplicationContext());
+			initializeMap();
 
-		setCheckBoxesBehaviour();
-		setClearPersonalMarkersButtonBehavior();
+			setCheckBoxesBehaviour();
+			setClearPersonalMarkersButtonBehavior();
+			
+			updateCheckBoxesState();
+	    } else  {
+	        
+	    	GooglePlayServicesUtil.getErrorDialog(checkGooglePlayServicesCode, this, 1122).show();
+	    }
 		
-		updateCheckBoxesState();
 	}
 
 	private void initializeNavigationDrawer() {
